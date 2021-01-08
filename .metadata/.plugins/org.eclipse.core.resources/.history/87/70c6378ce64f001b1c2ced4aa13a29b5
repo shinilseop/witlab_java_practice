@@ -1,0 +1,49 @@
+package Exam02;
+
+import java.util.Random;
+
+import javax.swing.JLabel;
+
+public class Pig extends Things {
+
+	boolean goLeft;
+
+	Pig(int x, int y, int sizeX, int sizeY, JLabel image) {
+		super(x, y, sizeX, sizeY);
+		goLeft = true;
+		new UpdateThings(image, this).start();
+	}
+
+	public void run() {
+		Random r = new Random();
+
+		while (true) {
+			if (!isCatch) {
+				int move = r.nextInt(30) + 20;
+				if (goLeft) {
+					if (x - move <= 62) {
+						x = 62;
+						goLeft = false;
+					} else {
+						x -= 62;
+					}
+				} else {
+					if (x + move >= 538) {
+						x = 62;
+						goLeft = true;
+					} else {
+						x += 62;
+					}
+				}
+			} else {
+				break;
+			}
+			try {
+				sleep(Main.SLEEP);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

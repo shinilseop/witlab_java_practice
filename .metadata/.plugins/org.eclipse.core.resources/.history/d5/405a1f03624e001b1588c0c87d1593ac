@@ -1,0 +1,24 @@
+package JAVA_02_last;
+
+public class Character extends Thread {
+	private int x;
+	private score;
+	private boolean left;
+	
+	public int getX() {
+		return x;
+	}
+	public synchronized void setX(int x) {
+		this.x = x;
+	}
+	public boolean isLeft() {
+		return left;
+	}
+	public synchronized void setLeft(boolean left) {
+		this.left = left;
+	}
+	
+	public void run() {
+		
+	}
+}

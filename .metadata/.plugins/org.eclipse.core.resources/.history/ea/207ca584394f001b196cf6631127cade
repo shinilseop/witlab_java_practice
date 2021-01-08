@@ -1,0 +1,47 @@
+package Exam01_Server;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
+public class CalendarMaker {
+	String date;
+	StringBuffer calendar = new StringBuffer();
+
+	CalendarMaker(String date) {
+		this.date = date;
+	}
+
+	void makeCalendar() {
+		String[] tmp = date.split("-");
+
+		calendar.append("<" + tmp[0] + "년 " + tmp[1] + "월>\n");
+		calendar.append("Sun\tMon\tTue\tWed\tThu\tFri\tSat\n");
+
+		int day = 1;
+		int lastday = 31;
+
+		int startWeek = 2;
+		for (int i = 0; i < startWeek; i++) {
+			calendar.append("\t");
+		}
+		for (int i = startWeek; i < 6; i++) {
+			for (int j = startWeek; j < 7; j++) {
+				calendar.append((day++) + "\t");
+				if (day == lastday) {
+					break;
+				}
+			}
+			calendar.append("\n");
+			if (startWeek != 0)
+				startWeek = 0;
+			if (day == lastday) {
+				break;
+			}
+		}
+
+	}
+
+	String getCalendar() {
+		return calendar.toString();
+	}
+}

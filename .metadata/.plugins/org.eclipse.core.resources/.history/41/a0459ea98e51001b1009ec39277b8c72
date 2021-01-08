@@ -1,0 +1,33 @@
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class FirstUI extends JFrame implements ActionListener 	{
+	JButton jbChange;
+	
+	
+	
+	FirstUI(){
+		jbChange=new JButton("새로열기");
+		
+		Container ct=getContentPane();
+		ct.setLayout(new GridLayout(1,1));
+		ct.add(jbChange);
+		
+		
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		if(arg0.getSource()==jbChange) {
+			
+		}
+	}
+}

@@ -1,0 +1,17 @@
+package JAVA_01_first_02;
+
+public class Exponent {
+	int num;
+	String convert;
+	Exponent(int num){
+		this.num=num;
+	}
+	
+	void convertor() {
+		
+	}
+	
+	String getConvert()	{
+		return convert;
+	}
+}

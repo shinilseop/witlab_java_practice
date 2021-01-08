@@ -1,0 +1,10 @@
+package Exam02;
+
+public class MyFileReader {
+	File file;
+	FileReader fr;
+	MyFileReader(){
+		file=new File("bio.txt");
+		fr=new FileReader(file);
+	}
+}

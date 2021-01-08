@@ -1,0 +1,29 @@
+package Exam02;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class MyFileWriter {
+	File file;
+	FileWriter fw;
+
+	MyFileWriter() {
+		try {
+			file = new File("bio.txt");
+			fw = new FileWriter(file);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	void writeFile(String msg) {
+		try {
+			fw.write(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,6 @@
+package Exam02;
+
+public class Things extends Thread {
+	int x, y;
+	
+}

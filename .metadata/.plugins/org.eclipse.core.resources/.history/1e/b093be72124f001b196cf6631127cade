@@ -1,0 +1,9 @@
+package Exam02;
+
+import javax.swing.JLabel;
+
+public class UI {
+	Figure_Calculator fc;
+	JLabel jlServer,jlBlank;
+	
+}

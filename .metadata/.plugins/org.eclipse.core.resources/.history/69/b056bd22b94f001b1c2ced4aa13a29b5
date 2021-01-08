@@ -1,0 +1,14 @@
+package Exam02;
+
+public class SinkWater extends Thread {
+	
+	Water w;
+	
+	SinkWater(Water w){
+		this.w=w;
+	}
+	
+	public void run() {
+		
+	}
+}

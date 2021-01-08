@@ -1,0 +1,32 @@
+package Exam02;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class UpdateThings extends Thread {
+	JPanel game;
+	JLabel image;
+	Things t;
+	UpdateThings(JPanel game, JLabel image, Things t){
+		this.game=game;
+		this.image=image;
+		this.t=t;
+	}
+	
+	public void run() {
+		while(true) {
+			if(t.isRun) {
+				image.setBounds(t.x, t.y, t.sizeX, t.sizeY);
+			} else {
+				image.setIcon(new ImageIcon("pig_dead.png"));
+				break;
+			}
+			try {
+				sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

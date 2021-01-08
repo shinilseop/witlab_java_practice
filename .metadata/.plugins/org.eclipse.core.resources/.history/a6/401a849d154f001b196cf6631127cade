@@ -1,0 +1,38 @@
+package Exam02;
+
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+
+public class MessageProcessor extends Thread {
+	Socket s;
+	InputStream is;
+	DataInputStream dis;
+	
+	Figure_Calculator fc;
+	
+	MessageProcessor(Socket s){
+		try {
+			this.s=s;
+			is=s.getInputStream();
+			dis=new DataInputStream(is);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void run() {
+		while(true) {
+			try {
+				String msg=dis.readUTF();
+				fc=new Figure_Calculator(msg);
+				fc.getFigure();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

@@ -1,0 +1,8 @@
+package Exam02;
+
+public class SinkWater extends Thread {
+	
+	public void run() {
+		
+	}
+}

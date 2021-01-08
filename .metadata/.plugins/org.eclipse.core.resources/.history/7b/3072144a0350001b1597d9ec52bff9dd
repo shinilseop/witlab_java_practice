@@ -1,0 +1,6 @@
+package Client;
+
+public class TcpClient extends Thread {
+	Socket s;
+	
+}

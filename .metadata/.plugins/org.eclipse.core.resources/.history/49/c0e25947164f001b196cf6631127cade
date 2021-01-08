@@ -1,0 +1,11 @@
+package Exam02;
+
+import java.net.Socket;
+
+public class Connection extends Thread {
+	Socket s;
+	
+	Connection(String ip, int port){
+		s=new Socket(ip, port);
+	}
+}

@@ -1,0 +1,27 @@
+package Exam01_Client;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class Connection {
+	
+	Socket s;
+	InputStream is;
+	DataInputStream dis;
+	OutputStream os;
+	DataOutputStream dos;
+	
+	Connection(String ip, int port){
+		try {
+			s=new Socket(ip, port);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+}

@@ -1,0 +1,8 @@
+package JAVA_02_last;
+
+public class Timer extends Thread {
+	int time;
+	public void run() {
+		
+	}
+}

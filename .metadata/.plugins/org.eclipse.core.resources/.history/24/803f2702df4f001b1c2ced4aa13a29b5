@@ -1,0 +1,6 @@
+package Exam02;
+
+public class GameStart {
+	UI ui;
+	
+}

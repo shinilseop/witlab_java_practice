@@ -1,0 +1,54 @@
+package Client;
+
+import javax.swing.JTextArea;
+
+public class Fandom extends Thread {
+	int ticket;
+	
+	int id, sPort;
+	String ip;
+	JTextArea jtaLog;
+	
+	MsgSender ms;
+	byte buffer[];
+
+	Fandom(int id, int sPort, String ip, JTextArea jtaLog) {
+		ticket=0;
+		this.id = id;
+		this.sPort=sPort;
+		this.jtaLog=jtaLog;
+		try {
+			ms = new MsgSender(ip, sPort);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void buyTicket() {
+		ticket++;
+		jtaLog.append(id+":티켓을 구매했습니다. (보유 개수 : "+ticket+")\n");
+	}
+	
+	public synchronized void stopThis() {
+		try {
+			this.wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void run() {
+		while (true) {
+			try {
+				ms.sendMsg(id+"");
+				sleep(1);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+}

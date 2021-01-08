@@ -1,0 +1,13 @@
+package JAVA_02_last;
+
+import java.util.Random;
+
+public class MoneyGenerator extends Thread {
+	public void run() {
+		Random r=new Random();
+		while(true) {
+			Money m = new Money(r.nextInt(405)+5, 50);
+			
+		}
+	}
+}

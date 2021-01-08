@@ -1,0 +1,26 @@
+package Exam02;
+
+import javax.swing.JTextArea;
+
+public class SinkWater extends Thread {
+	
+	Water w;
+	JTextArea jtaSink;
+	
+	SinkWater(Water w, JTextArea jtaSink){
+		this.w=w;
+		this.jtaSink=jtaSink;
+	}
+	
+	public void sinkWater() {
+		w.setWater(w.getWater()-100);
+		jtaSink.append("100ml 빠짐, "+w.getWater()+"ml 남음\n");
+	}
+	
+	public void run() {
+		while(true) {
+			sinkWater();
+			sleep(500);
+		}
+	}
+}

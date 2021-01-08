@@ -1,0 +1,9 @@
+package Exam02;
+
+public class Connection extends Thread {
+	Socket s;
+	
+	Conenction(){
+		s=new Socket();
+	}
+}

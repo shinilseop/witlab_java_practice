@@ -1,0 +1,15 @@
+package Exam02;
+
+import javax.swing.JLabel;
+
+public class Things extends Thread {
+	int x, y;
+	int sizeX, sizeY;
+	
+	JLabel image;
+	Things(int x, int y, JLabel image){
+		this.x=x;
+		this.y=y;
+		this.image=image;
+	}
+}

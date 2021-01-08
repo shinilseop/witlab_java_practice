@@ -1,0 +1,17 @@
+package Server;
+
+public class Ticket {
+	private int ticket;
+	
+	Ticket(int ticket){
+		this.ticket=ticket;
+	}
+
+	public synchronized int getTicket() {
+		return ticket;
+	}
+
+	public synchronized void setTicket(int ticket) {
+		this.ticket = ticket;
+	}
+}

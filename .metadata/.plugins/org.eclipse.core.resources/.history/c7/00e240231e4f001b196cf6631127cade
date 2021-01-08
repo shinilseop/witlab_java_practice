@@ -1,0 +1,13 @@
+package Exam02;
+
+import java.io.File;
+import java.io.FileWriter;
+
+public class MyFileWriter {
+	File f;
+	FileWriter fw;
+	MyFileWriter(){
+		f=new File("bio.txt");
+		fw=new FileWriter(f);
+	}
+}

@@ -1,0 +1,16 @@
+package Exam01_Client;
+
+public class ServerThread extends Thread {
+	ServerSocket ss;
+	Socket s;
+	
+	ServerThread(int port){
+		ss=new ServerSocket(port);
+	}
+	
+	public void run() {
+		while(true) {
+			
+		}
+	}
+}

@@ -1,0 +1,43 @@
+package UI;
+
+import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
+public class UIManager extends JFrame {
+	UI ui;
+	int uiNum;
+	Container ct;
+
+	public UIManager() {
+		ct = getContentPane();
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+	public void start() {
+		ui = new TitleUI();
+	}
+
+	public void select() {
+		ct.removeAll();
+		ui = new SelectUI();
+
+		uiNum = 2;
+	}
+
+	public void how() {
+		ct.removeAll();
+		ui = new HowUI(ct);
+
+		uiNum = 3;
+	}
+
+	public void game() {
+
+	}
+
+}

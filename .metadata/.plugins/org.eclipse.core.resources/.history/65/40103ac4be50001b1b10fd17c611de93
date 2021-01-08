@@ -1,0 +1,13 @@
+package UI;
+
+import javax.swing.JFrame;
+
+public class UI extends JFrame  {
+	boolean isRun;
+	public UI() {
+		
+	}
+
+	public void moveMenu() {
+	}
+}

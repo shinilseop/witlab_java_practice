@@ -1,0 +1,12 @@
+package Exam02;
+
+public class GameStart {
+	UI ui;
+	Update update;
+	
+	GameStart(){
+		ui=new UI();
+		update=new Update(ui);
+		ui.OpenGame();
+	}
+}

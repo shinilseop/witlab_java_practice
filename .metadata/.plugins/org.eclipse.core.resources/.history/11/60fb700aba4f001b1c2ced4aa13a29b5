@@ -1,0 +1,21 @@
+package Exam02;
+
+public class SinkWater extends Thread {
+	
+	Water w;
+	JTextArea jtaSink;
+	
+	SinkWater(Water w){
+		this.w=w;
+	}
+	
+	public void sinkWater() {
+		w.setWater(w.getWater()-100);
+	}
+	
+	public void run() {
+		while(true) {
+			sinkWater();
+		}
+	}
+}

@@ -1,0 +1,47 @@
+package Rand_arr;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Rand_arr_Maker {
+	Random r;
+	int[] before;
+	int[][] last;
+	int sum=0;
+	
+	public void make_arr() {
+		before=new int[15];
+		last=new int[5][];
+		int idx=0;
+		for(int i=1;i<=5;i++) {
+			last[i-1]=new int[i];
+			for(int j=0;j<i;j++) {
+				before[idx]=r.nextInt(25)+1;
+				last[i-1][j]=before[j];
+				sum+=before[j];
+			}
+		}
+		desc(before);
+	}
+	
+	public void desc(int arr[]) {
+		for(int i=0;i<arr.length;i++) {
+			for(int j=i+1;j<arr.length;j++) {
+				if(arr[i]<arr[j]) {
+					int tmp=arr[i];
+					arr[i]=arr[j];
+					arr[j]=tmp;
+				}
+			}
+		}
+	}
+	
+	public void printArr() {
+		for(int i=0;i<last.length;i++) {
+			for(int j=0;j<last[i].length;j++) {
+				System.out.print(last[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+}

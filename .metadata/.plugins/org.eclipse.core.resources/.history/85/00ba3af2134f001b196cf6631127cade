@@ -1,0 +1,11 @@
+package Exam02;
+
+import java.io.DataInputStream;
+import java.io.InputStream;
+
+public class ReadMessage extends Thread {
+	Socket s;
+
+	InputStream is;
+	DataInputStream dis;
+}

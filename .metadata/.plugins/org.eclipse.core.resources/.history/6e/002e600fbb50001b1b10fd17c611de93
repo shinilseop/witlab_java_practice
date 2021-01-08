@@ -1,0 +1,16 @@
+package UI;
+
+import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
+public class UI extends JFrame  {
+	public UI() {
+	}
+	
+	public UI select() {
+		return new SelectUI();
+	}
+}

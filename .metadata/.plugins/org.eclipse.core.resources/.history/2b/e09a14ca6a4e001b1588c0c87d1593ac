@@ -1,0 +1,14 @@
+package JAVA_02_last;
+
+public class Timer extends Thread {
+	int time;
+	JLabel label;
+	Character c;
+	
+	Timer(JLabel, Character c){
+		
+	}
+	public void run() {
+		
+	}
+}

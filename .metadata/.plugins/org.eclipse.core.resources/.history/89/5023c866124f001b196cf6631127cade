@@ -1,0 +1,6 @@
+package Exam02;
+
+public class UI {
+	Figure_Calculator fc;
+	JLabel jlServer,jlBlank;
+}

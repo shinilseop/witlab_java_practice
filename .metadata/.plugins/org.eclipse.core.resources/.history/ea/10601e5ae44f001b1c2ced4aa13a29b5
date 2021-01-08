@@ -1,0 +1,14 @@
+package Exam02;
+
+public class UpdateThings extends Thread {
+	JLabel image;
+	Things t;
+	UpdateThings(JLabel image, Things t){
+		this.image=image;
+		this.t=t;
+	}
+	
+	public void run() {
+		
+	}
+}

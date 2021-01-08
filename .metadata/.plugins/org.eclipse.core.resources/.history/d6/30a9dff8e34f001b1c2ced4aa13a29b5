@@ -1,0 +1,11 @@
+package Exam02;
+
+public class Things extends Thread {
+	int x, y;
+	JLabel image;
+	Things(int x, int y, JLabel image){
+		this.x=x;
+		this.y=y;
+		this.image=image;
+	}
+}

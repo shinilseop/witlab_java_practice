@@ -1,0 +1,19 @@
+package Exam01_Client;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class Connection {
+	
+	Socket s;
+	
+	Connection(String ip, int port){
+		try {
+			s=new Socket(ip, port);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+}

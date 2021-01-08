@@ -1,0 +1,25 @@
+package Rand_arr;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Rand_arr_Maker {
+	Random r;
+	Integer[] before;
+	ArrayList<Integer[]> last;
+	
+	void make_arr() {
+		for(int i=1;i<=5;i++) {
+			before=new Integer[i];
+			for(int j=0;j<i;j++) {
+				before[j]=r.nextInt(25)+1;
+			}
+			desc(before);
+			last.add(before);
+		}
+	}
+	
+	void desc(Integer arr[]) {
+		
+	}
+}

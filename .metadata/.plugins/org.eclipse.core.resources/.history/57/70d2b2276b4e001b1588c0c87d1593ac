@@ -1,0 +1,34 @@
+package JAVA_02_last;
+
+public class Character implements Runnable {
+	private int x;
+	private int score;
+	
+	Character(int x){
+		this.x=x;
+		this.score=0;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public synchronized void setX(int x) {
+		this.x = x;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public synchronized void setScore(int score) {
+		this.score = score;
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true) {
+			
+		}
+	}
+}

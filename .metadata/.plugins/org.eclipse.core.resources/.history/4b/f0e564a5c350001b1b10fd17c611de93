@@ -1,0 +1,11 @@
+package UI;
+
+import javax.swing.JLabel;
+
+public class HowUI extends UI {
+	JLabel jlEx;
+	
+	public HowUI(Container ct) {
+		
+	}
+}

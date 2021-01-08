@@ -1,0 +1,16 @@
+package UI;
+
+import java.awt.Container;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+
+public class HowUI extends UI {
+	Font fTitle,fEx;
+	
+	JLabel jlTitle,jlEx;
+	
+	public HowUI(Container ct) {
+		jl
+	}
+}

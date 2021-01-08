@@ -1,0 +1,9 @@
+package Server;
+
+public class Snippet {
+	public static void main(String[] args) {
+		
+		dis=new DataInputStream(is);
+	}
+}
+

@@ -1,0 +1,13 @@
+package JAVA_01_first_02;
+
+public class Exponenet {
+	int num;
+	String convert;
+	Exponenet(int num){
+		this.num=num;
+	}
+	
+	void convertor() {
+		
+	}
+}

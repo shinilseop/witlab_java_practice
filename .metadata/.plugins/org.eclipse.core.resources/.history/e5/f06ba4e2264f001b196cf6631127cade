@@ -1,0 +1,197 @@
+package Exam02;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JTextField;
+
+public class UI extends JFrame implements ActionListener {
+	Font font;
+	
+	JPanel jpTop;
+	JLabel jlIp,jlPort,jlBlank;
+	JTextField jtfIp,jtfPort;
+	JButton jbConn;
+	
+	JPanel jpCenter,jpBar;
+	JProgressBar jpbArr[];
+	JLabel jlArr[];
+	JPanel jpFigure, jpBirth, jpInput;
+	JLabel jlBirth,jlYear,jlMonth,jlDays;
+	JTextField jtfYear,jtfMonth,jtfDays;
+	
+	JPanel jpBottom;
+	JButton jbBody, jbSens, jbBrain, jbSince;
+	
+	Connection c;
+	
+	UI(){
+		font=new Font("굴림", Font.BOLD, 13);
+		
+		
+		//상단설정
+		jpTop=new JPanel(new GridLayout(2,3));
+		
+		//서버 아이피, 포트 입력
+		jlIp=new JLabel("Server IP");
+		jlIp.setFont(font);
+		jlIp.setHorizontalAlignment(JLabel.CENTER);
+		jlPort=new JLabel("Server Port");
+		jlPort.setFont(font);
+		jlPort.setHorizontalAlignment(JLabel.CENTER);
+		jlBlank=new JLabel("");
+		
+		jtfIp=new JTextField("127.0.0.1");
+		jtfPort=new JTextField("7777");
+		jbConn=new JButton("통신 설정");
+		jbConn.addActionListener(this);
+		
+		
+		//중단설정
+		jpCenter=new JPanel(new BorderLayout());
+		jpBar=new JPanel(new GridLayout(20,1));
+
+		//진행바
+		jpbArr=new JProgressBar[10];
+		jlArr=new JLabel[10];
+		for(int i=0;i<jpbArr.length;i++) {
+			jpbArr[i]=new JProgressBar();
+			jlArr[i]=new JLabel("오늘로부터 "+i+"일 후");
+			jlArr[i].setFont(font);
+			jlArr[i].setHorizontalAlignment(JLabel.CENTER);
+		}
+		
+		jpFigure=new JPanel(new GridLayout(1,4));
+		jpBirth=new JPanel(new BorderLayout());
+		jpBirth.setBackground(Color.LIGHT_GRAY);
+		jpInput=new JPanel(new GridLayout(2,3));
+		
+		//생년월일 입력
+		jlBirth=new JLabel("생년월일 입력");
+		jlBirth.setFont(font);
+		jlBirth.setHorizontalAlignment(JLabel.CENTER);
+		jlYear=new JLabel("월");
+		jlYear.setFont(font);
+		jlYear.setHorizontalAlignment(JLabel.CENTER);
+		jlMonth=new JLabel("일");
+		jlMonth.setFont(font);
+		jlMonth.setHorizontalAlignment(JLabel.CENTER);
+		jlDays=new JLabel("일");
+		jlDays.setFont(font);
+		jlDays.setHorizontalAlignment(JLabel.CENTER);
+		
+		jtfYear=new JTextField("1997");
+		jtfMonth=new JTextField("12");
+		jtfDays=new JTextField("26");
+		
+		
+		
+		//하단설정
+		jpBottom=new JPanel(new GridLayout(1,4));
+		jbBody=new JButton("신체지수");
+		jbBody.setEnabled(false);
+		jbBody.addActionListener(this);
+		jbSens=new JButton("신체지수");
+		jbSens.setEnabled(false);
+		jbSens.addActionListener(this);
+		jbBrain=new JButton("신체지수");
+		jbBrain.setEnabled(false);
+		jbBrain.addActionListener(this);
+		jbSince=new JButton("신체지수");
+		jbSince.setEnabled(false);
+		jbSince.addActionListener(this);
+		
+		
+		
+		//Container
+		Container ct=getContentPane();
+		ct.setLayout(new BorderLayout());
+		ct.add(jpTop, BorderLayout.NORTH);
+		ct.add(jpCenter, BorderLayout.CENTER);
+		ct.add(jpBottom, BorderLayout.SOUTH);
+		
+		//Top
+		jpTop.add(jlIp);
+		jpTop.add(jlPort);
+		jpTop.add(jlBlank);
+		jpTop.add(jtfIp);
+		jpTop.add(jtfPort);
+		jpTop.add(jbConn);
+		
+		
+		
+		//Center
+		jpCenter.add(jpBar, BorderLayout.CENTER);
+		jpCenter.add(jpBirth, BorderLayout.SOUTH);
+		
+		//Center_bar
+		for(int i=0;i<jpbArr.length;i++) {
+			jpBar.add(jpbArr[i]);
+			jpbArr[i].setValue(50);
+		}
+		
+		//Center_birth
+		jpBirth.add(jpFigure, BorderLayout.NORTH);
+		jpBirth.add(jlBirth, BorderLayout.CENTER);
+		jpBirth.add(jpInput, BorderLayout.SOUTH);
+		
+		//Center_birth_figure
+		jpFigure.add(jlBody);
+		jpFigure.add(jlSens);
+		jpFigure.add(jlBrain);
+		jpFigure.add(jlSince);
+		
+		//Center_birth_input
+		jpInput.add(jlYear);
+		jpInput.add(jlMonth);
+		jpInput.add(jlDays);
+		jpInput.add(jtfYear);
+		jpInput.add(jtfMonth);
+		jpInput.add(jtfDays);
+		
+		
+		
+		//라스트
+		setTitle("TCP Biorhythm 클라이언트");
+		setSize(500, 800);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	
+	public void updateBar(double figure[]) {
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		Object o=arg0.getSource();
+		if(o==jbConn) {
+			if(!jtfIp.getText().equals("") && !jtfPort.getText().equals("")) {
+				String ip=jtfIp.getText();
+				int port=Integer.parseInt(jtfPort.getText());
+				jbCal.setEnabled(true);
+				jbConn.setEnabled(false);
+				System.out.println("conntect try...");
+				c=new Connection(ip, port, this);
+				System.out.println("conntect finish!");
+				c.start();
+			}
+		} else if(o==jbCal) {
+			if(!jtfYear.getText().equals("") && !jtfMonth.getText().equals("") & !jtfDays.getText().equals("")) {
+				String msg = jtfYear.getText()+" "+jtfMonth.getText()+" "+jtfDays.getText();
+				c.sendMsg(msg);
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+package Client;
+
+import javax.swing.JTextArea;
+
+public class LogWriter {
+	JTextArea log;
+	
+	public LogWriter(JTextArea log) {
+		this.log=log;
+	}
+	
+	
+}

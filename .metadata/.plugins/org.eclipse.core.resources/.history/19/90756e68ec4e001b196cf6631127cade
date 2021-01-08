@@ -1,0 +1,11 @@
+package JAVA_01_first_02;
+
+public class HexaConvertor extends Exponent {
+	HexaConvertor(int num) {
+		super(num);
+	}
+
+	void Convertor() {
+
+	}
+}

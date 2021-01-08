@@ -1,0 +1,23 @@
+package Exam02;
+
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class FillWater {
+
+	Water w;
+	JTextArea jtaFill;
+	JLabel jlWater;
+	
+	FillWater(Water w, JTextArea jtaFill, JLabel jlWater){
+		this.w=w;
+		this.jtaFill=jtaFill;
+		this.jlWater=jlWater;
+	}
+	
+	public void fillWater() {
+		w.setWater(w.getWater()+100);
+		jtaFill.append("100ml 부음\n");
+		jlWater.setText(w.getWater()+"");
+	}
+}

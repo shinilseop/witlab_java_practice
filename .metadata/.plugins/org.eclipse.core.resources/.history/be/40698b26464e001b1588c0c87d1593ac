@@ -1,0 +1,10 @@
+package JAVA_01_last;
+
+public class Main {
+	public static void main(String args[]) {
+		WordFinder wf=new WordFinder();
+		
+		String str="HEllo";
+		System.out.println(str.indexOf("ll"));
+	}
+}

@@ -1,0 +1,84 @@
+package JAVA_01_first_02;
+
+import java.util.ArrayList;
+
+public class Convert_num {
+	int num;
+	StringBuffer convert=new StringBuffer();
+	Convert_num(int num){
+		this.num=num;
+	}
+	
+	void toBinary() {
+		int tmp=num;
+		while(tmp>2) {
+			convert.append(tmp%2);
+			tmp/=2;
+		}
+		if(tmp==1) {
+			convert.append(1);
+		} else if(tmp==2) {
+			convert.append(0);
+			convert.append(1);
+		}
+	}
+	
+	void toOcta() {
+		int i;
+		String convertCopy=convert.reverse().toString();
+		convert=new StringBuffer();
+		for(i=3;i<convertCopy.length();i+=3) {
+			String tmp=convertCopy.substring(i-3, i);
+
+			int num=0;
+			int mul=1;
+			for(int j=1;j<tmp.length();j++) {
+				num+=(tmp.charAt(j)-48)*mul;
+				mul*=2;
+			}
+			convert.append(num);
+		}
+		if(convertCopy.length()<=i) {
+			String tmp=convertCopy.substring(i-3);
+			System.out.println(convertCopy+" "+tmp+" "+i);
+			int num=0;
+			int mul=1;
+			for(int j=1;j<tmp.length();j++) {
+				num+=(tmp.charAt(j)-48)*mul;
+				mul*=2;
+			}
+			convert.append(num);
+		}
+	}
+	
+	void toHexa() {
+		int i;
+		String convertCopy=convert.toString();
+		convert=new StringBuffer();
+		for(i=4;i<convertCopy.length();i+=4) {
+			String tmp=convertCopy.substring(i-4, i);
+
+			int num=0;
+			int mul=1;
+			for(int j=1;j<tmp.length();j++) {
+				num+=(tmp.charAt(j)-48)*mul;
+				mul*=2;
+			}
+			convert.append(num);
+		}
+		if(convertCopy.length()<=i) {
+			String tmp=convertCopy.substring(i-4);
+			int num=0;
+			int mul=1;
+			for(int j=1;j<tmp.length();j++) {
+				num+=(tmp.charAt(j)-48)*mul;
+				mul*=2;
+			}
+			convert.append(num);
+		}
+	}
+	
+	String getConvert() {
+		return convert.reverse().toString();
+	}
+}

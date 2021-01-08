@@ -1,0 +1,8 @@
+package JAVA_01_first_02;
+
+public class BinaryConvertor extends Exponent {
+	
+	BinaryConvertor(int num)	{
+		super(num);
+	}
+}

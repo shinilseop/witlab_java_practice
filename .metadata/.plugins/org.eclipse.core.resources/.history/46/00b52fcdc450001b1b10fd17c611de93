@@ -1,0 +1,35 @@
+package UI;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+
+import javax.swing.JLabel;
+
+public class HowUI extends UI {
+	Font fTitle,fEx;
+	
+	JPanel jpContent;
+	JLabel jlTitle,jlEx;
+	
+	public HowUI(Container ct) {
+		fTitle=new Font("굴림", Font.BOLD, 30);
+		fEx=new Font("굴림", Font.PLAIN, 13);
+		
+		jlTitle=new JLabel("게임 설명");
+		jlTitle.setFont(fTitle);
+		
+		jpContent=new JPanel(new GridLayout(8,1));
+		String content="내려오는 블록들을 화살표를 이용하여 움직여서\n"
+				+ "빈 공간에 끼워넣어 같은 줄의 블록이 가득차면\n"
+				+ "사라지면서 점수를 얻을 수 있습니다.\n"
+				+ "(화살표 = 블록 움직이기, 스페이스바 = 한번에 내리기)\n\n\n\n"
+				+ "다시 메뉴로 돌아가시려면 <- 키를 눌러주세요.";
+		jlEx=new JLabel(content);
+		jlEx.setFont(fEx);
+		
+		ct.setLayout(new BorderLayout());
+		ct.add(jlTitle, BorderLayout.NORTH);
+		ct.add(jlEx, BorderLayout.CENTER);
+	}
+}

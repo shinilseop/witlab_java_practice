@@ -1,0 +1,7 @@
+package Exam02;
+
+public class Figure_Calculator {
+	String strBirth;
+	
+	
+}

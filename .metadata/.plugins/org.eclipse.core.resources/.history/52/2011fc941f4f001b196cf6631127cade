@@ -1,0 +1,30 @@
+package Exam02;
+
+public class ValueProcess {
+	String msg;
+	MyFileWriter fw;
+	MyFileReader fr;
+	UI ui;
+
+
+	public void write() {
+		String tmp[]=msg.split(" ");
+		double dBody=Math.round(Integer.parseInt(tmp[0])*100)/100.0;
+		double dSens=Math.round(Integer.parseInt(tmp[1])*100)/100.0;
+		double dBrain=Math.round(Integer.parseInt(tmp[2])*100)/100.0;
+		double dSince=Math.round(Integer.parseInt(tmp[3])*100)/100.0;
+		fw.writeFile(dBody+" "+dSens+" "+dBrain+" "+dSince);
+		
+	}
+	
+	public void read() {
+
+		String readFile[]=fr.readFile().split(" ");
+		int iBody=Integer.parseInt(readFile[0]);
+		int iSens=Integer.parseInt(readFile[1]);
+		int iBrain=Integer.parseInt(readFile[2]);
+		int iSince=Integer.parseInt(readFile[3]);
+		ui.updateBar(iBody, iSens, iBrain, iSince);
+		ui.updateBar(iBody, iSens, iBrain, iSince);
+	}
+}

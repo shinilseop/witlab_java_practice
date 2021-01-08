@@ -1,0 +1,64 @@
+package Client;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+
+public class MsgReicever extends Thread {
+	int port;
+
+	DatagramSocket ds;
+	DatagramPacket dp;
+
+	byte buffer[];
+	boolean stop;
+	UI ui;
+
+	MsgReicever(int port, UI ui) {
+		this.port = port;
+		this.ui=ui;
+		try {
+			stop = false;
+			ds = new DatagramSocket(port);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public synchronized void stopMR(MsgReicever mr) {
+		try {
+			mr.wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void run() {
+		while (true) {
+			if (stop) {
+				stopMR(this);
+			}
+			try {
+				buffer = new byte[66536];
+				dp = new DatagramPacket(buffer, buffer.length);
+				ds.receive(dp);
+				String msg=new String(dp.getData());
+				ui.jtaLog.append("Server : " + msg+"\n");
+				int id = Integer.parseInt(msg.replaceAll("[^0-9]", ""))-1;
+				if(id==0) {
+					ui.jtaLog.append("티켓완판\n");
+					ui.f[id].isTicket=false;
+				} else
+					ui.f[id].buyTicket();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+}

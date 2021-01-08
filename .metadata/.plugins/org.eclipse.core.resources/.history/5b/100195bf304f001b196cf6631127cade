@@ -1,0 +1,12 @@
+package Exam01_Client;
+
+public class UI {
+	JPanel jpTop;
+	JLabel jlIp, jlPort;
+	JTextField jtfIp, jtfPort;
+	JTextArea jtaCal;
+	JPanel Bottom;
+	JTextField jtfInput;
+	JButton jbSend, jbReceive;
+	
+}

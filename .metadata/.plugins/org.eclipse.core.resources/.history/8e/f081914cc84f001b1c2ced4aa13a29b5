@@ -1,0 +1,42 @@
+package Client;
+
+import javax.swing.JTextArea;
+
+public class Fandom extends Thread {
+	int ticket;
+	
+	int id, sPort;
+	JTextArea jtaLog;
+	
+	MsgSender ms;
+	String ip;
+	byte buffer[];
+
+	Fandom(int sPort, String ip, int id, JTextArea jtaLog) {
+		this.id = id;
+		this.sPort=sPort;
+		try {
+			ms = new MsgSender(ip, sPort);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void buyTicket() {
+		ticket++;
+		
+	}
+
+	public void run() {
+		while (true) {
+			try {
+				ms.sendMsg(id+"");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+}

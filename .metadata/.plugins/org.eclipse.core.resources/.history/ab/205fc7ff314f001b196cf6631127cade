@@ -1,0 +1,10 @@
+package Exam01_Client;
+
+import java.net.Socket;
+
+public class Connection {
+	Socket s;
+	Connection(String ip, int port){
+		s=new Socket(ip, port);
+	}
+}

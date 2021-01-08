@@ -1,0 +1,10 @@
+package Exam02;
+
+public class GameStart {
+	UI ui;
+	
+	GameStart(){
+		ui=new UI();
+		
+	}
+}

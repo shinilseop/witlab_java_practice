@@ -1,0 +1,30 @@
+package UI;
+
+import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
+public class UI extends JFrame  {
+	boolean isRun;
+	int uiNum;
+	
+	static UI ui;
+
+	public UI(int uiNum) {
+		addKeyListener(this);
+		setFocusable(true);
+		isRun = true;
+		this.uiNum=uiNum;
+	}
+	
+	
+	public void title() {
+		UI.ui=new TitleUI();
+	}
+	
+	public void select() {
+		UI.ui=new SelectUI();
+	}
+}

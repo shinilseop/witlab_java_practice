@@ -1,0 +1,11 @@
+package JAVA_02_last;
+
+public class MoneyGenerator extends Thread {
+	
+	
+	public void run() {
+		while(true) {
+			Money m = new Money();
+		}
+	}
+}

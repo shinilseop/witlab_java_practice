@@ -1,0 +1,8 @@
+package Exam01_Client;
+
+public class Connection {
+	Socket s;
+	Connection(String ip, int port){
+		s=new Socket(ip, port);
+	}
+}

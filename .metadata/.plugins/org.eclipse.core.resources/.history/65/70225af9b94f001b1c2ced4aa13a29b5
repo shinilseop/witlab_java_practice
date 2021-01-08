@@ -1,0 +1,16 @@
+package Exam02;
+
+public class FillWater {
+
+	Water w;
+	JTextArea jtaFill;
+	
+	FillWater(Water w, JTextArea jtaFill){
+		this.w=w;
+	}
+	
+	public int fillWater() {
+		w.setWater(w.getWater()+100);
+		return w.getWater();
+	}
+}

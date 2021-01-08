@@ -1,0 +1,12 @@
+
+public class FirstUI extends JFrame implements ActionListener {
+	JButton jbChange;
+	
+	
+	
+	FirstUI(){
+		jbChange=new JButton("새로열기");
+		
+		Container ct
+	}
+}

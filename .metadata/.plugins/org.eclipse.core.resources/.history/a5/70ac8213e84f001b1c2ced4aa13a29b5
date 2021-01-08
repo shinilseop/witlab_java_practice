@@ -1,0 +1,50 @@
+package Exam02;
+
+import java.util.Random;
+
+import javax.swing.JLabel;
+
+public class Arrow extends Things {
+	Pig p;
+	boolean isCeil;
+
+	Arrow(int x, int y, int sizeX, int sizeY, JLabel image, Pig p) {
+		super(x, y, sizeX, sizeY);
+		this.p = p;
+		new UpdateThings(image, this);
+		isCeil = false;
+	}
+
+	public void isCatch() {
+		if (true) {
+			p.isCatch = true;
+		} else {
+
+		}
+	}
+
+	public void isCeil() {
+		if (y == 0) {
+			isCeil = true;
+		}
+	}
+
+	public void run() {
+		while (true) {
+			System.out.println(y);
+			if (!isCatch && !isCeil) {
+				y -= 30;
+				isCatch();
+				isCeil();
+			} else {
+				break;
+			}
+			try {
+				sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

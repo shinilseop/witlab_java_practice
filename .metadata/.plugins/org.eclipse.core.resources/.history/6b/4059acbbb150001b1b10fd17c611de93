@@ -1,0 +1,9 @@
+package Main;
+
+import UI.TitleUI;
+
+public class Main {
+	public static void main(String args[]) {
+		new TitleUI();
+	}
+}

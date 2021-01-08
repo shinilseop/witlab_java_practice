@@ -1,0 +1,23 @@
+package JAVA_01_first_02;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		Exponent convertor;
+		
+		System.out.println("진법변환기를 시작합니다.");
+		System.out.print("변환하려는 10진수를 입력해주세요(1~255) : ");
+		int num=sc.nextInt();
+
+		convertor=new BinaryConvertor(num);
+		System.out.println("2진수 : "+convertor.getConvert());
+		
+		convertor=new OctaConvertor(num);
+		System.out.println("8진수 : "+convertor.getConvert());
+		
+		convertor=new HexaConvertor(num);
+		System.out.println("16진수 : "+convertor.getConvert());
+	}
+}

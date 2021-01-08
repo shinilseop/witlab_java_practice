@@ -1,0 +1,39 @@
+package Client;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+import javax.swing.JTextArea;
+
+public class Fandom extends Thread {
+	int id;
+	MsgSender ms;
+	MsgReicever mr;
+
+	int sPort;
+	String ip;
+	byte buffer[];
+
+	Fandom(int sPort, String ip, int id) {
+		this.id = id;
+		this.sPort=sPort;
+		try {
+			ms = new MsgSender(ip, sPort);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void run() {
+		while (true) {
+			try {
+				ms.sendMsg(id+"");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+}

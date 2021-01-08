@@ -1,0 +1,101 @@
+package Server;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class UI extends JFrame implements ActionListener {
+	Font font;
+	
+	JPanel jpTop;
+	JLabel jlIp, jlPort;
+	JTextField jtfIp, jtfPort;
+	JButton jbConn;
+	
+	JTextArea jtaLog;
+	JScrollPane jspLog;
+	
+	JPanel jpBottom;
+	JLabel jlChat;
+	JTextField jtfContent;
+	JButton jbSend;
+	
+	UI(){
+		font=new Font("굴림", Font.BOLD, 15);
+		
+		//init_Top
+		jpTop=new JPanel(new GridLayout(2,3));
+		jlIp=new JLabel("Server IP");
+		jlIp.setHorizontalAlignment(JLabel.CENTER);
+		jlIp.setFont(font);
+		jlPort=new JLabel("Server Port");
+		jlPort.setHorizontalAlignment(JLabel.CENTER);
+		jlPort.setFont(font);
+		jtfIp=new JTextField("127.0.0.1");
+		jtfPort=new JTextField("7777");
+		jbConn=new JButton("접속");
+		jbConn.addActionListener(this);
+		
+		//init_Middle
+		jtaLog=new JTextArea();
+		jspLog=new JScrollPane(jtaLog);
+		
+		//init_Bottom
+		jpBottom=new JPanel(new BorderLayout());
+		jlChat=new JLabel("채팅");
+		jlChat.setHorizontalAlignment(JLabel.CENTER);
+		jlChat.setFont(font);
+		jtfContent=new JTextField();
+		jbSend=new JButton("보내기");
+		jbSend.addActionListener(this);
+		
+		
+		
+		//Top
+		jpTop.add(jlIp);
+		jpTop.add(jlPort);
+		jpTop.add(new JLabel());
+		jpTop.add(jtfIp);
+		jpTop.add(jtfPort);
+		jpTop.add(jbConn);
+		
+		//Bottom
+		jpBottom.add(jlChat, BorderLayout.WEST);
+		jpBottom.add(jtfContent, BorderLayout.CENTER);
+		jpBottom.add(jbSend, BorderLayout.EAST);
+		
+		//Container
+		Container ct=getContentPane();
+		ct.setLayout(new BorderLayout());
+		ct.add(jpTop, BorderLayout.NORTH);
+		ct.add(jspLog, BorderLayout.CENTER);
+		ct.add(jpBottom, BorderLayout.SOUTH);
+		
+		setTitle("TCP 채팅 클라이언트측");
+		setSize(350,500);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object o=e.getSource();
+		if(o==jbConn) {
+			
+		} else if(o==jbSend) {
+			
+		}
+	}
+}

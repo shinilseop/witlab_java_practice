@@ -1,0 +1,82 @@
+package UI;
+
+import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
+public class UIManager extends JFrame implements KeyListener {
+	UI ui;
+	int uiNum;
+	Container ct;
+
+	public UIManager() {
+		addKeyListener(this);
+		setFocusable(true);
+	}
+
+	public void start() {
+		ct = getContentPane();
+		ui = new TitleUI(ct);
+
+		setTitle("Title");
+		setSize(527, 426);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+
+		uiNum = 1;
+	}
+
+	public void select() {
+		ct.removeAll();
+		ct = getContentPane();
+		ui = new SelectUI(ct);
+
+		setTitle("Select");
+		setSize(400, 200);
+
+		uiNum = 2;
+	}
+
+	public void how() {
+
+	}
+
+	public void how() {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println(e.getKeyCode());
+		if (uiNum == 1) {
+			ui.isRun = false;
+			select();
+			uiNum = 2;
+		} else if (uiNum == 2) {
+			if (e.getKeyCode() == 38 || e.getKeyCode() == 40) {
+				ui.moveMenu();
+			} else if (e.getKeyCode() == 10) {
+				if (ui.isStart) {
+
+				} else {
+
+				}
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+}

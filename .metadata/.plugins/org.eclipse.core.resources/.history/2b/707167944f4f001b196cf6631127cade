@@ -1,0 +1,56 @@
+package Exam01_Server;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import javax.swing.JTextArea;
+
+public class CalendarMaker {
+	String date;
+	StringBuffer calendar = new StringBuffer();
+	JTextArea log;
+
+	CalendarMaker(String date, JTextArea log) {
+		this.date = date;
+		this.log = log;
+	}
+
+	void makeCalendar() {
+		String[] tmp = date.split("-");
+
+		calendar.append("<" + tmp[0] + "년 " + tmp[1] + "월>\n");
+		calendar.append("Sun\tMon\tTue\tWed\tThu\tFri\tSat\n");
+
+		int year=Integer.parseInt(tmp[0]);
+		int month=Integer.parseInt(tmp[1]);
+		GregorianCalendar cal = new GregorianCalendar(year, month, 1);
+		log.append(cal.get(Calendar.DAY_OF_WEEK) + " 요일 "+year+" "+month+"\n");
+		int day = 1;
+		int lastday = 31;
+		int startWeek = 2;
+
+		for (int i = 0; i < startWeek; i++) {
+			calendar.append("\t");
+		}
+		for (int i = startWeek; i < 6; i++) {
+			for (int j = startWeek; j < 7; j++) {
+				calendar.append((day++) + "\t");
+				if (day == lastday) {
+					calendar.append((day) + "\t");
+					break;
+				}
+			}
+			calendar.append("\n");
+			if (startWeek != 0)
+				startWeek = 0;
+			if (day == lastday) {
+				break;
+			}
+		}
+
+	}
+
+	String getCalendar() {
+		return calendar.toString();
+	}
+}

@@ -1,0 +1,67 @@
+package Server;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+
+import Client.LogWriter;
+
+public class User extends Thread {
+
+	String name;
+	Socket s;
+	TcpServer ts;
+
+	InputStream is;
+	DataInputStream dis;
+	OutputStream os;
+	DataOutputStream dos;
+
+	boolean isOut;
+	LogWriter lw;
+
+	public User(String name, Socket s, TcpServer ts, LogWriter lw) {
+		this.name = name;
+		this.s = s;
+		this.ts = ts;
+		try {
+			is = s.getInputStream();
+			dis = new DataInputStream(is);
+			os = s.getOutputStream();
+			dos = new DataOutputStream(os);
+			isOut = false;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.lw=lw;
+	}
+
+	public void run() {
+		while (true) {
+			try {
+				if (isOut) {
+					ts.userList.remove(name);
+					for(int i=0;i<ts.userName.size();i++) {
+						if(ts.userName.get(i).equals(name)) {
+							ts.userName.remove(i);
+							break;
+						}
+					}
+					ts.sendMsg(name+"이(가) 나갔습니다.");
+					break;
+				} else {
+					String msg = dis.readUTF();
+					System.out.println("Server : "+msg);
+					ts.sendMsg(msg);
+					lw.write(msg);
+				}
+			} catch (IOException e) {
+				break;
+			}
+		}
+	}
+}

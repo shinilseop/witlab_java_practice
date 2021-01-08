@@ -1,0 +1,49 @@
+package UI;
+
+import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
+public class UIManager {
+	UI ui;
+	UIChanger uic;
+
+	public UIManager() {
+		uic=new UIChanger() {
+			public void changeSelect() {
+				ui = new SelectUI();
+			}
+			public void changeHow() {
+				
+			}
+			public void changeGame() {
+				
+			}
+			public void changeScore() {
+			}
+		};
+	}
+
+	public void start() {
+		ui = new SelectUI();
+	}
+
+	public void select() {
+		ui = new SelectUI();
+	}
+
+	public void how() {
+		ui = new HowUI();
+	}
+
+	public void game() {
+
+	}
+	
+	public void score() {
+
+	}
+
+}

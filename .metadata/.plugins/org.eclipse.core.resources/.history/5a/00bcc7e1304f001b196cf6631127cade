@@ -1,0 +1,33 @@
+package Exam01_Client;
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class UI extends JFrame implements ActionListener {
+	JPanel jpTop;
+	JLabel jlIp, jlPort;
+	JTextField jtfIp, jtfPort;
+	JTextArea jtaCal;
+	JPanel Bottom;
+	JTextField jtfInput;
+	JButton jbSend, jbReceive;
+	UI(){
+		//Init_Top
+		jpTop=new JPanel(new GridLayout(2,2));
+		
+		jlIp=new JLabel("Server IP");
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

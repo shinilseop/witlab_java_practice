@@ -1,0 +1,17 @@
+package MySQLPrint;
+
+import java.sql.Connection;
+import java.sql.Statement;
+
+public class Main {
+	public static void main(String args[]) {
+		String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+		String DB_URL = "jdbc:mysql://localhost:3306/chat";
+
+		String USER_NAME = "root";
+		String PASSWORD = "1234";
+		
+		Connection conn;
+		Statement state;
+	}
+}

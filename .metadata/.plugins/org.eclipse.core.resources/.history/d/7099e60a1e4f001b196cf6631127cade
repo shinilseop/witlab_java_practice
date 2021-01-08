@@ -1,0 +1,9 @@
+package Exam02;
+
+public class MyFileWriter {
+	File f;
+	MyFileWriter fw;
+	MyFileWriter(){
+		
+	}
+}

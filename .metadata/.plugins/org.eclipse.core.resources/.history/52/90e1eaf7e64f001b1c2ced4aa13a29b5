@@ -1,0 +1,8 @@
+package Exam02;
+
+public class Main {
+	static final int SLEEP=500;
+	public static void main(String args[]) {
+		new GameStart();
+	}
+}

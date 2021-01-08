@@ -1,0 +1,58 @@
+package Server;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class TcpServer extends Thread {
+	ServerSocket ss;
+	Socket s;
+	HashMap<String, User> userList;
+	ArrayList<String> userName;
+	int cnt;
+
+	public TcpServer(int port) {
+		try {
+			ss = new ServerSocket(port);
+			userList = new HashMap<>();
+			cnt = 1;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void sendMsg(String msg) {
+		for (String str : userName) {
+			User user = userList.get(str);
+
+		}
+	}
+
+	public void run() {
+		while (true) {
+			try {
+				s = ss.accept();
+				if (userList.get(s) == null) {
+					String name = "User" + cnt;
+					User user = new User(name, s, this);
+					userList.put(name, user);
+					userName.add(name);
+				} else {
+					userList.remove(name);
+					for(int i=0;i<userName.size();i++) {
+						if(userName.get(i).equals(name)) {
+							userName.remove(i);
+							break;
+						}
+					}
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

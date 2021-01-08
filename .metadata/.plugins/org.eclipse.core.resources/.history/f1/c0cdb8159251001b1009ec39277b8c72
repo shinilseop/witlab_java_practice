@@ -1,0 +1,86 @@
+package UI;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
+
+public class SelectUI extends UI implements KeyListener {
+	Font font;
+
+	JLabel jlStart, jlHow, jlScore;
+	Container ct;
+
+	public SelectUI() {
+		font = new Font("굴림", Font.BOLD, 30);
+
+		jlStart = new JLabel("Game Start");
+		jlStart.setFont(font);
+		jlStart.setForeground(Color.black);
+		jlStart.setBorder(new LineBorder(Color.black, 2));
+
+		jlHow = new JLabel("How To Play");
+		jlHow.setFont(font);
+		jlHow.setForeground(Color.black);
+		
+		jlScore=new JLabel("Score");
+		jlScore.setFont(font);
+		jlScore.setForeground(Color.black);
+
+		isStart = true;
+
+		ct=getContentPane();
+		ct.setLayout(new GridLayout(2, 1));
+		ct.add(jlStart);
+		ct.add(jlHow);
+		
+		setTitle("Select");
+		setSize(400, 200);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+	
+	public void moveMenu() {
+		if (isStart) {
+			isStart = false;
+			jlStart.setBorder(null);
+			jlHow.setBorder(new LineBorder(Color.black, 2));
+		} else {
+			isStart = true;
+			jlHow.setBorder(null);
+			jlStart.setBorder(new LineBorder(Color.black, 2));
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getKeyChar()==KeyEvent.VK_UP || e.getKeyChar()==KeyEvent.VK_DOWN) {
+			ui.moveMenu();
+		} else if (e.getKeyCode() == 10) {
+			if (ui.isStart) {
+				
+			} else {
+				
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

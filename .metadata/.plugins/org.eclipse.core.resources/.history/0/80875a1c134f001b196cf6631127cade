@@ -1,0 +1,17 @@
+package Exam02;
+
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class ServerThread extends Thread {
+	ServerSocket ss;
+	Socket s;
+	
+	ServerThread(int port){
+			ss=new ServeSocket(port);
+	}
+	
+	public void run() {
+		
+	}
+}

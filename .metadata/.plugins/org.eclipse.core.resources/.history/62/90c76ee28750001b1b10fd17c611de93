@@ -1,0 +1,79 @@
+package Client;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+
+public class TcpClient extends Thread {
+	Socket s;
+	
+	InputStream is;
+	DataInputStream dis;
+	OutputStream os;
+	DataOutputStream dos;
+	
+	LogWriter lw;
+	
+	String name;
+	boolean isRun;
+	
+	TcpClient(String ip, int port, LogWriter lw){
+		try {
+			s=new Socket(ip, port);
+			is=s.getInputStream();
+			dis=new DataInputStream(is);
+			os=s.getOutputStream();
+			dos=new DataOutputStream(os);
+			isRun=true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.lw=lw;
+	}
+	
+	public void sendMsg(String msg) {
+		try {
+			dos.writeUTF(msg);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void run() {
+		while(true) {
+			try {
+				if(isRun) {
+					String msg=dis.readUTF();
+					System.out.println("Server : "+msg);
+					String tmp[]=msg.split(" ");
+					if(tmp[0].equals("/out")) {
+						break;
+					} else if(tmp[0].equals("/name")) {
+						name=tmp[1];
+					} else if(tmp[0].equals("/msg")) {
+						StringBuffer msgBuffer;
+						if(tmp[1].equals(name)) {
+							msgBuffer=new StringBuffer("나 "+tmp[1]);
+						} else {
+							msgBuffer=new StringBuffer(tmp[1]+" "+tmp[2]);
+						}
+						for(int i=3;i<tmp.length;i++)
+							msgBuffer.append(" "+tmp[i]);
+						lw.write(msgBuffer.toString());
+					} else if(tmp[0].equals("/server")) {
+						lw.write(msg.substring(8));
+					}
+				} else {
+					break;
+				}
+			} catch (IOException e) {
+				break;
+			}
+		}
+	}
+}

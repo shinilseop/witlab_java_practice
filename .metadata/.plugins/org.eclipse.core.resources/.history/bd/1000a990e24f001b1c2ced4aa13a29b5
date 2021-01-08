@@ -1,0 +1,13 @@
+package Exam02;
+
+public class UpdateThings extends Thread {
+	UI ui;
+	
+	UpdateThings(UI ui){
+		this.ui=ui;
+	}
+	
+	public void run() {
+		
+	}
+}

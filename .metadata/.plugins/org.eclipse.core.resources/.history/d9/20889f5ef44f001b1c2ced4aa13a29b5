@@ -1,0 +1,54 @@
+package Server;
+
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class UI extends JFrame implements ActionListener {
+	Font font;
+	
+	JPanel jpTop;
+	JLabel jlIp, jlPort;
+	JTextField jtfIp, jtfPort;
+	JButton jbConn;
+	
+	JTextArea jtaLog;
+	JScrollPane jspLog;
+	
+	JPanel Bottom;
+	JLabel jlChat;
+	JTextField jtfContent;
+	JButton jbSend;
+	
+	UI(){
+		font=new Font("굴림", Font.BOLD, 15);
+		
+		jpTop=new JPanel(new GridLayout(2,3));
+		jlIp=new JLabel("Server IP");
+		jlIp.setHorizontalAlignment(JLabel.CENTER);
+		jlIp.setFont(font);
+		jlPort=new JLabel("Server Port");
+		jlPort.setHorizontalAlignment(JLabel.CENTER);
+		jlPort.setFont(font);
+		
+		
+		
+		Container ct=getContentPane();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

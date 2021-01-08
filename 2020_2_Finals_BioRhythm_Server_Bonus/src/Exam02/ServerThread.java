@@ -1,0 +1,33 @@
+package Exam02;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class ServerThread extends Thread {
+	ServerSocket ss;
+	Socket s;
+	
+	ServerThread(int port){
+			try {
+				ss=new ServerSocket(port);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	public void run() {
+		while(true) {
+			try {
+				System.out.println("server On");
+				s=ss.accept();
+				new MessageProcessor(s).start();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+}

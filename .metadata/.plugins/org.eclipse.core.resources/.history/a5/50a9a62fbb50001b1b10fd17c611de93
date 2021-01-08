@@ -1,0 +1,13 @@
+package UI;
+
+import javax.swing.JFrame;
+
+public class UI extends JFrame  {
+	public UI() {
+		
+	}
+	
+	public UI select() {
+		return new SelectUI();
+	}
+}

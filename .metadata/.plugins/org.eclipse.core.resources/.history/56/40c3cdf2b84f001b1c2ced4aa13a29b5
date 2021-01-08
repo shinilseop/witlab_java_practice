@@ -1,0 +1,15 @@
+package Exam02;
+
+public class FillWater {
+
+	Water w;
+	
+	FillWater(Water w){
+		
+	}
+	
+	public int fillWater() {
+		w.setWater(w.getWater()+100);
+		return w.getWater();
+	}
+}

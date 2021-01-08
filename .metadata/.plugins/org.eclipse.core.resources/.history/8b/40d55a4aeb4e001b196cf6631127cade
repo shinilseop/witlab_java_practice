@@ -1,0 +1,9 @@
+package JAVA_01_first_02;
+
+public class Exponenet {
+	int num;
+	String changeNum;
+	Exponenet(int num){
+		this.num=num;
+	}
+}

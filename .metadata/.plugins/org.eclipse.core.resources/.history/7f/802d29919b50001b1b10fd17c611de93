@@ -1,0 +1,9 @@
+package Server;
+
+public class Test {
+	public static void main(String args[]) {
+		DBMS dbms=new DBMS();
+		
+		dbms.insert("insert into values (''");
+	}
+}

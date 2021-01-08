@@ -1,0 +1,30 @@
+package Exam02;
+
+import java.util.Random;
+
+public class Pig extends Things {
+	
+	boolean goLeft;
+	
+	Pig(int x,int y){
+		super(x,y);
+		goLeft=true;
+	}
+	
+	public void run() {
+		Random r=new Random();
+		
+		while(true) {
+			int move=r.nextInt(30)+20;
+			if(goLeft) {
+				if(x==62) {
+					goLeft=false;
+				} else {
+					
+				}
+			} else {
+				
+			}
+		}
+	}
+}

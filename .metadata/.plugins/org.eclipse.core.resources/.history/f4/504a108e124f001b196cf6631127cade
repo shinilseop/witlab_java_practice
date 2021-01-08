@@ -1,0 +1,18 @@
+package Exam02;
+
+import java.awt.Container;
+
+import javax.swing.JLabel;
+
+public class UI extends JFrame implements ActionListener{
+	Figure_Calculator fc;
+	JLabel jlPort,jlBlank;
+	JTextField jtfPort;
+	JButton jbSetting;
+	
+	UI(){
+		Container ct=getContentPane();
+		ct.setLayout(new GirdLayout(2,2));
+		
+	}
+}

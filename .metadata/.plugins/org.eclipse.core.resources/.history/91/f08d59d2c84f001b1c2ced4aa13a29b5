@@ -1,0 +1,58 @@
+package Server;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+
+public class MsgReicever extends Thread {
+	int port;
+
+	DatagramSocket ds;
+	DatagramPacket dp;
+
+	byte buffer[];
+
+	boolean stop;
+
+	MsgReicever(int port) {
+		this.port = port;
+
+		try {
+			stop = false;
+			ds = new DatagramSocket(port);
+			buffer = new byte[66536];
+			dp = new DatagramPacket(buffer, buffer.length);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public synchronized void stopMR(MsgReicever mr) {
+		try {
+			mr.wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void run() {
+		while (true) {
+			if (stop) {
+				stopMR(this);
+			}
+			try {
+				ds.receive(dp);
+				String msg = new String(dp.getData());
+				System.out.println("Client : " + msg);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+}

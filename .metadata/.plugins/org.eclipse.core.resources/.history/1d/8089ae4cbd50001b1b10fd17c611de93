@@ -1,0 +1,18 @@
+package UI;
+
+import java.awt.Container;
+
+import javax.swing.JFrame;
+
+public class UI extends JFrame  {
+	boolean isRun;
+	Container ct;
+	public UI(Container ct) {
+		this.ct=ct;
+	}
+	public void moveMenu() {
+	}
+	public Container getContainer() {
+		return ct;
+	}
+}

@@ -1,0 +1,7 @@
+package UI;
+
+public interface UIChanger {
+	public void changeUI() {
+		
+	}
+}

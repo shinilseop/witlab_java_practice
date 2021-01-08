@@ -1,0 +1,16 @@
+package Exam02;
+
+import java.time.LocalDate;
+
+public class Figure_Calculator {
+	String strBirth;
+	
+	public void getFigure() {
+		String tmp[]=strBirth.split(" ");
+		int year=
+		LocalDate start=LocalDate.of(arg0, arg1, arg2)
+		
+		int body=
+				
+	}
+}

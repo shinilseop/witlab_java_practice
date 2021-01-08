@@ -1,0 +1,112 @@
+package Client;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class UI extends JFrame implements ActionListener {
+	Font font;
+	
+	JPanel jpTop;
+	JLabel jlServer,jlIp,jlClient;
+	JTextField jtfServer, jtfIp, jtfClient;
+	JButton jbConn;
+	
+	JTextArea jtaLog;
+	JScrollPane jspLog;
+	
+	JButton jbBuy;
+	
+	boolean isConn;
+	int cPort, sPort;
+	String ip;
+	
+	MsgReicever mr;
+	
+	UI(){
+		font=new Font("굴림", Font.BOLD, 13);
+		
+		//init_Top
+		jpTop=new JPanel(new GridLayout(2,4));
+
+		jlClient=new JLabel("Client Port");
+		jlClient.setFont(font);
+		jlIp=new JLabel("Server IP");
+		jlIp.setFont(font);
+		jlServer=new JLabel("Server Port");
+		jlServer.setFont(font);
+
+		jtfClient=new JTextField("9000");
+		jtfIp=new JTextField("127.0.0.1");
+		jtfServer=new JTextField("9001");
+		
+		jbConn=new JButton("설정");
+		jbConn.addActionListener(this);
+		
+		//init_Middle
+		jtaLog=new JTextArea();
+		jspLog=new JScrollPane(jtaLog);
+		
+		//init_Bottom
+		jbBuy=new JButton("구매 시작");
+		jbBuy.addActionListener(this);
+		
+		
+		//init_Value
+		isConn=false;
+		
+		
+		//Container
+		Container ct=getContentPane();
+		ct.setLayout(new BorderLayout());
+		ct.add(jpTop, BorderLayout.NORTH);
+		ct.add(jspLog, BorderLayout.CENTER);
+		ct.add(jbBuy, BorderLayout.SOUTH);
+		
+		setTitle("김범수 콘서트 예약 시스템 서버");
+		setSize(400, 450);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		
+		//Top
+		jpTop.add(jlClient);
+		jpTop.add(jlIp);
+		jpTop.add(jlServer);
+		jpTop.add(new JLabel(""));
+		jpTop.add(jtfClient);
+		jpTop.add(jtfIp);
+		jpTop.add(jtfServer);
+		jpTop.add(jbConn);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object o=e.getSource();
+		if(o==jbConn) {
+			ip=jtfIp.getText();
+			sPort=Integer.parseInt(jtfServer.getText());
+			cPort=Integer.parseInt(jtfClient.getText());
+			mr=new MsgReicever(cPort);
+			isConn=true;
+		}
+		
+		if(o==jbBuy && isConn) {
+			for(int i=1;i<=100;i++) {
+				new Fandom(sPort, ip, i).start();
+			}
+		}
+	}
+}
