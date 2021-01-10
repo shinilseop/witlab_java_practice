@@ -1,0 +1,9 @@
+package UI;
+
+import javax.swing.JPanel;
+
+public class UpdateBoard {
+	JPanel Board;
+	
+}
+ 

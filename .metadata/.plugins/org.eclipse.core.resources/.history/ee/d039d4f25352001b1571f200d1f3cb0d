@@ -1,0 +1,30 @@
+package UI;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class RegisterUI extends UI implements ActionListener {
+	String strContent[] = { "ID : ", "PassWord : ", "Name : ", };
+	JLabel jlContent[];
+	JTextField jtfContent[];
+	JButton jbRegist;
+
+	RegisterUI(UIChanger uic) {
+		super(uic);
+		jlContent = new JLabel[strContent.length];
+		jtfContent = new JTextField[strContent.length];
+		for (int i = 0; i < jlContent.length; i++) {
+			jlContent[i] = new JLabel(strContent[i]);
+		}
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == jbRegist) {
+
+		}
+	}
+}

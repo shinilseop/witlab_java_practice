@@ -1,0 +1,12 @@
+package UI;
+
+public class Update extends Thread {
+	boolean isRun;
+	
+	public void run() {
+		isRun=true;
+		while (isRun) {
+			
+		}
+	}
+}

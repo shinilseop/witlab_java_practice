@@ -1,0 +1,26 @@
+package Tetris;
+
+public class Block extends Thread {
+	int[][] tetris;
+	int block_num;
+	boolean isLand;
+	
+	Block(int[][] tetris){
+		this.tetris=tetris;
+		isLand=false;
+	}
+	
+	public void isLand() {
+		for(int i=1;i<tetris.length;i++) {
+			for(int j=0;j<tetris[0].length;j++) {
+				if(tetris[i][j]==1 ) {
+					
+				}
+			}
+		}
+	}
+	
+	public void run() {
+		
+	}
+}

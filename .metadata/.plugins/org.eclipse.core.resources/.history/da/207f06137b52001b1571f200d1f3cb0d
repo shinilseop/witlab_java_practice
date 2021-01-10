@@ -1,0 +1,11 @@
+package Tetris;
+
+public class Tetris {
+	int tetris[][];
+	int score;
+	Block next;
+	
+	public Tetris(){
+		tetris=new int[21][10];
+	}
+}

@@ -1,0 +1,19 @@
+package UI;
+
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+
+public class UI extends JFrame implements KeyListener {
+	boolean isRun, isStart;
+	UI ui;
+	UIChanger uic;
+	UI(UIChanger uic){
+		this.uic=uic;
+	}
+	public void removeKey() {
+		removeKeyListener(this);
+		setFocusable(false);
+		setVisible(false);
+	}
+}

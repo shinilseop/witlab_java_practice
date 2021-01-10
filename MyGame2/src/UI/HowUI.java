@@ -19,7 +19,8 @@ public class HowUI extends UI implements KeyListener {
 
 	Container ct;
 	
-	public HowUI() {
+	public HowUI(UIChanger uic) {
+		super(uic);
 		fTitle=new Font("굴림", Font.BOLD, 30);
 		fEx=new Font("굴림", Font.PLAIN, 13);
 		
@@ -50,6 +51,8 @@ public class HowUI extends UI implements KeyListener {
 		setFocusable(true);
 		setTitle("Select");
 		setSize(350, 300);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -57,20 +60,9 @@ public class HowUI extends UI implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyChar()==KeyEvent.VK_BACK_SPACE) {
-			
+		if(e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
+			removeKey();
+			uic.goMenu();
 		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

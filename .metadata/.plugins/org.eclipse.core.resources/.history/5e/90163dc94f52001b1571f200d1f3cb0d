@@ -1,0 +1,44 @@
+package UI;
+
+public class UIManager {
+	UI ui;
+	UIChanger uic;
+
+	public UIManager() {
+		uic=new UIChanger() {
+			public void changeMenu() {
+				ui = new MenuUI();
+			}
+			public void changeHow() {
+				ui = new HowUI();
+			}
+			public void changeGame() {
+				ui = new GameUI();
+			}
+			public void changeScore() {
+				ui = new ScoreUI();
+			}
+		};
+	}
+
+	public void start() {
+		ui=new TitleUI());
+	}
+
+	public void select() {
+		ui = new MenuUI();
+	}
+
+	public void how() {
+		ui = new HowUI();
+	}
+
+	public void game() {
+
+	}
+	
+	public void score() {
+
+	}
+
+}

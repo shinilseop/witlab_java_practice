@@ -1,0 +1,83 @@
+package UI;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import DBMS.DBMS;
+
+public class RegisterUI extends UI implements ActionListener {
+	Font font;
+
+	JPanel jpContent;
+	String strContent[] = { "ID : ", "PassWord : ", "Name : ", "Email : " };
+	JLabel jlContent[], jlResult;
+	JTextField jtfContent[];
+	JButton jbRegist;
+
+	RegisterUI(UIChanger uic) {
+		super(uic);
+
+		font = new Font("굴림", Font.BOLD, 15);
+
+		// Init_Center
+		jpContent = new JPanel(new GridLayout(strContent.length, 2));
+		jpContent.setBounds(20, 20, 200, 100);
+		jlContent = new JLabel[strContent.length];
+		jtfContent = new JTextField[strContent.length];
+		for (int i = 0; i < jlContent.length; i++) {
+			jlContent[i] = new JLabel(strContent[i]);
+			jlContent[i].setHorizontalAlignment(JLabel.RIGHT);
+			jlContent[i].setFont(font);
+		}
+		for (int i = 0; i < jlContent.length; i++) {
+			jtfContent[i] = new JTextField();
+		}
+		// Inut_Bottom
+		jbRegist = new JButton("회원가입");
+		jbRegist.setBounds(80, 125, 100, 30);
+		jbRegist.setFont(font);
+		jbRegist.addActionListener(this);
+
+		Container ct = getContentPane();
+		ct.setLayout(null);
+		ct.add(jpContent);
+		ct.add(jbRegist);
+
+		setTitle("회원가입");
+		setSize(250, 200);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+
+		for (int i = 0; i < jlContent.length; i++) {
+			jpContent.add(jlContent[i]);
+			jpContent.add(jtfContent[i]);
+		}
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == jbRegist) {
+			DBMS dbms = new DBMS();
+			StringBuffer sql = new StringBuffer("insert into user values ('" + jtfContent[0].getText() + "'");
+			for (int i = 1; i < jtfContent.length; i++) {
+				sql.append(",'" + jtfContent[i].getText() + "'");
+			}
+			sql.append(")");
+			System.out.println(sql);
+			if(dbms.insert(sql.toString())==1){
+				
+			}
+		}
+	}
+}

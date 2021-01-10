@@ -1,0 +1,26 @@
+package UI;
+
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBMS {
+	private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	private final String DB_URL = "jdbc:mysql://localhost:3306/Tetris";
+
+	private final String USER_NAME = "root";
+	private final String PASSWORD = "1234";
+
+	Connection conn;
+	Statement stmt;
+
+	public DBMS() {
+		try {
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(DB_URL);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

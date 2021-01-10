@@ -1,0 +1,102 @@
+package UI;
+
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import DBMS.DBMS;
+import DBMS.Score;
+
+public class ScoreUI extends UI {
+	Font fontTitle, fontContent;
+
+	JLabel jlRanking;
+	DBMS dbms;
+	ArrayList<Score> scoreList;
+	JPanel jpRank, jpName, jpScore;
+	JLabel jlRank[], jlName[], jlScore[];
+
+
+	ScoreUI(UIChanger uic) {
+		super(uic);
+		fontTitle = new Font("굴림", Font.BOLD, 20);
+		fontContent = new Font("굴림", Font.BOLD, 15);
+
+		//init_Title
+		jlRanking = new JLabel("랭킹");
+		jlRanking.setBounds(55, 10, 100, 20);
+		jlRanking.setFont(fontTitle);
+		
+		//init_Content
+		dbms = new DBMS();
+		scoreList=dbms.selectScore();
+		System.out.println(scoreList.size()+" size");
+		jpRank=new JPanel(new GridLayout(scoreList.size(),1));
+		jpRank.setBounds(10, 40, 20, 250);
+		jpName=new JPanel(new GridLayout(scoreList.size(),1));
+		jpName.setBounds(40, 40, 60, 250);
+		jpScore=new JPanel(new GridLayout(scoreList.size(),1));
+		jpScore.setBounds(110, 40, 60, 250);
+		jlRank=new JLabel[scoreList.size()];
+		jlName=new JLabel[scoreList.size()];
+		jlScore=new JLabel[scoreList.size()];
+		for(int i=0;i<scoreList.size();i++) {
+			jlRank[i]=new JLabel((i+1)+"");
+			jlRank[i].setHorizontalAlignment(JLabel.CENTER);
+			jlRank[i].setFont(fontContent);
+			jlName[i]=new JLabel(scoreList.get(i).getId());
+			jlName[i].setHorizontalAlignment(JLabel.CENTER);
+			jlName[i].setFont(fontContent);
+			jlScore[i]=new JLabel(scoreList.get(i).getScore()+"");
+			jlScore[i].setHorizontalAlignment(JLabel.CENTER);
+			jlScore[i].setFont(fontContent);
+		}
+		
+		Container ct=getContentPane();
+		ct.setLayout(null);
+		ct.add(jlRanking);
+		ct.add(jpRank);
+		ct.add(jpName);
+		ct.add(jpScore);
+		
+		for(int i=0;i<scoreList.size();i++) {
+			jpRank.add(jlRank[i]); 
+			jpName.add(jlName[i]); 
+			jpScore.add(jlScore[i]); 
+		}
+		
+		setTitle("랭킹");
+		setSize(180, 320);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			removeKey();
+			uic.goMenu();
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+}

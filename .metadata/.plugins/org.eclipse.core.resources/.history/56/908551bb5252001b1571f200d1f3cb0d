@@ -1,0 +1,10 @@
+package UI;
+
+public interface UIChanger {
+	public void changeMenu();
+	public void changeHow();
+	public void changeGame();
+	public void changeScore();
+	public void goRegister();
+	public vodi goLogin();
+}

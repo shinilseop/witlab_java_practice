@@ -1,0 +1,68 @@
+package UI;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class LoginUI extends UI implements ActionListener {
+	Font font;
+
+	JPanel jpContent;
+	String strContent[] = { "ID : ", "PassWord : " };
+	JLabel jlContent[];
+	JTextField jtfContent[];
+	JButton jbLogin;
+
+	LoginUI(UIChanger uic) {
+		super(uic);
+		font = new Font("굴림", Font.BOLD, 15);
+
+		// Init_Center
+		jpContent = new JPanel(new GridLayout(strContent.length, 2));
+		jlContent = new JLabel[strContent.length];
+		jtfContent = new JTextField[strContent.length];
+		for (int i = 0; i < jlContent.length; i++) {
+			jlContent[i] = new JLabel(strContent[i]);
+			jlContent[i].setHorizontalAlignment(JLabel.CENTER);
+			jlContent[i].setFont(font);
+		}
+		for (int i = 0; i < jlContent.length; i++) {
+			jtfContent[i] = new JTextField();
+		}
+		// Inut_Bottom
+		jbLogin = new JButton("로그인");
+
+		Container ct = getContentPane();
+		ct.setLayout(null);
+		ct.add(jpContent, BorderLayout.CENTER);
+		ct.add(jbLogin, BorderLayout.SOUTH);
+
+		setTitle("로그인");
+		setSize(300, 400);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+
+		for (int i = 0; i < jlContent.length; i++) {
+			jpContent.add(jlContent[i]);
+			jpContent.add(jtfContent[i]);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == jbLogin) {
+
+		}
+	}
+
+}

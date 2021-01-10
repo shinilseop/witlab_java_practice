@@ -1,1 +1,10 @@
 1610097305043	Rename type 'Score'
+1610174455599	Rename type 'SelectUI'
+1610178605067	Rename package 'Game'
+1610178617948	Delete element
+1610178752982	Delete element
+1610179806014	Move compilation unit
+1610180034735	Rename type 'Login'
+1610191485869	Copy compilation units
+1610197446863	Delete element
+1610208916960	Rename field 'isWin'

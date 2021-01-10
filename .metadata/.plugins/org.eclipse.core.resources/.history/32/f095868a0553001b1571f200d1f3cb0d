@@ -1,0 +1,119 @@
+package UI;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
+import Tetris.Tetris;
+
+public class GameUI extends UI {
+	Font font;
+
+	JPanel jpTetris;
+	JLabel jlBlock[][];
+
+	ImageIcon iiNext, iiTmp;
+	JPanel jpOther;
+	JLabel jlNextT, jlNext, jlScore, jlTimer;
+
+	Tetris t;
+	UpdateBoard up;
+	
+	boolean isReady;
+
+	GameUI(UIChanger uic) {
+		super(uic);
+
+		font = new Font("굴림", Font.BOLD, 20);
+
+		// init_left
+		jpTetris = new JPanel(new GridLayout(20, 10));
+		jlBlock = new JLabel[20][10];
+		for (int i = 0; i < jlBlock.length; i++) {
+			for (int j = 0; j < jlBlock[0].length; j++) {
+				jlBlock[i][j] = new JLabel(new ImageIcon("image/black_block.png"));
+			}
+		}
+
+		// init_right
+		jpOther = new JPanel(null);
+		jpOther.setBackground(Color.GRAY);
+		iiTmp=new ImageIcon("image/blue_block_full.png").getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+		iiNext = new ImageIcon();
+		jlNextT = new JLabel("NEXT");
+		jlNextT.setHorizontalAlignment(JLabel.CENTER);
+		jlNextT.setFont(font);
+		jlNextT.setForeground(Color.white);
+		jlNextT.setBounds(50, 20, 200, 30);
+		jlNext = new JLabel(iiNext);
+		jlNext.setBorder(new LineBorder(Color.white, 4));
+		jlNext.setBounds(60, 60, 180, 150);
+		jlScore = new JLabel("SCORE : ");
+		jlScore.setHorizontalAlignment(JLabel.CENTER);
+		jlScore.setFont(font);
+		jlScore.setForeground(Color.white);
+		jlScore.setBounds(50, 300, 200, 30);
+		jlTimer = new JLabel("TIME : ");
+		jlTimer.setHorizontalAlignment(JLabel.CENTER);
+		jlTimer.setFont(font);
+		jlTimer.setForeground(Color.white);
+		jlTimer.setBounds(50, 500, 200, 30);
+
+		t = new Tetris();
+		up = new UpdateBoard(jpTetris, jlBlock, jlScore, jlTimer, t);
+		isReady=false;
+		
+		Container ct = getContentPane();
+		ct.setLayout(null);
+		jpTetris.setBounds(0, 0, 400, 600);
+		ct.add(jpTetris);
+		jpOther.setBounds(400, 0, 300, 600);
+		ct.add(jpOther);
+
+		setTitle("테트리스");
+		setSize(700, 600);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+
+		// set_left
+		for (int i = 0; i < jlBlock.length; i++) {
+			for (int j = 0; j < jlBlock[0].length; j++) {
+				jpTetris.add(jlBlock[i][j]);
+			}
+		}
+
+		// set_right
+		jpOther.add(jlNextT);
+		jpOther.add(jlNext);
+		jpOther.add(jlScore);
+		jpOther.add(jlTimer);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		int key = e.getKeyCode();
+		if (key == KeyEvent.VK_UP) {
+
+		} else if (key == KeyEvent.VK_LEFT) {
+
+		} else if (key == KeyEvent.VK_RIGHT) {
+
+		} else if (key == KeyEvent.VK_DOWN) {
+
+		} else if (key == KeyEvent.VK_SPACE) {
+
+		}
+	}
+}

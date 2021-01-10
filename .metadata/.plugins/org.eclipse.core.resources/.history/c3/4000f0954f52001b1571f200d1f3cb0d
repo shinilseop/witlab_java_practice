@@ -1,0 +1,20 @@
+package UI;
+
+import javax.swing.JPanel;
+
+public class UpdateBoard {
+	JPanel board;
+	
+	boolean isRun;
+	
+	UpdateBoard(JPanel Board){
+		this.board=borad;
+	}
+
+	public void run() {
+		isRun = true;
+		while (isRun) {
+
+		}
+	}
+}

@@ -1,0 +1,30 @@
+package UI;
+
+import javax.swing.JPanel;
+
+public class UpdateBoard extends Thread {
+	JPanel board;
+	JLabel jlBlock[][];
+	int block[][];
+	ImageIcon iiBlock[];
+	boolean isRun;
+
+	UpdateBoard(JPanel Board, JLabel jlBlock[][], int block[][]) {
+		this.board = board;
+		this.block=block;
+		iiBlock[0]=
+	}
+
+	public void run() {
+		isRun = true;
+		while (isRun) {
+			for(int i=0;i<block.length;i++) {
+				for(int j=0;j<block[0].length;j++) {
+					if(block[i][j]) {
+						
+					}
+				}
+			}
+		}
+	}
+}

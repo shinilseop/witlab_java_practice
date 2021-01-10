@@ -1,13 +1,39 @@
 package UI;
 
-import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-public class UI extends JFrame {
-	boolean isRun, isStart;
+public class UI extends JFrame implements KeyListener {
 	UI ui;
-	public void moveMenu() {
+	UIChanger uic;
+
+	UI(UIChanger uic) {
+		this.uic = uic;
+	}
+
+	public void removeKey() {
+		removeKeyListener(this);
+		setFocusable(false);
+		setVisible(false);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

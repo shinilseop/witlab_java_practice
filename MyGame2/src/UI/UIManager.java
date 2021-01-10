@@ -1,50 +1,40 @@
 package UI;
 
-import java.awt.Container;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.JFrame;
-
 public class UIManager {
 	UI ui;
 	UIChanger uic;
 
+
 	public UIManager() {
-		uic=new UIChanger() {
-			public void changeSelect() {
-				ui = new SelectUI();
+		uic = new UIChanger() {
+			public void goMenu() {
+				ui = new MenuUI(uic);
 			}
-			public void changeHow() {
-				ui = new HowUI();
+
+			public void goHow() {
+				ui = new HowUI(uic);
 			}
-			public void changeGame() {
-				ui = new GameUI();
+
+			public void goGame() {
+				ui = new GameUI(uic);
 			}
-			public void changeScore() {
-				ui = new ScoreUI();
+
+			public void goScore() {
+				ui = new ScoreUI(uic);
+			}
+
+			public void goRegister() {
+				ui = new RegisterUI(uic);
+			}
+
+			public void goLogin() {
+				ui = new LoginUI(uic);
 			}
 		};
 	}
 
 	public void start() {
-		ui = new Title();
-	}
-
-	public void select() {
-		ui = new SelectUI();
-	}
-
-	public void how() {
-		ui = new HowUI();
-	}
-
-	public void game() {
-
-	}
-	
-	public void score() {
-
+		ui = new TitleUI(uic);
 	}
 
 }

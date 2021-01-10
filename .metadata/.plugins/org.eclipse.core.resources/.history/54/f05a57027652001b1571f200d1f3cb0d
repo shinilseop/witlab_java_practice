@@ -1,0 +1,26 @@
+package UI;
+
+import java.awt.event.KeyEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GameUI extends UI {
+	
+	JPanel jpTetris, jpOther,jpNext,jpScore,jpTime;
+	JLabel jlBlock[][];
+	JLabel jlNextT,jlNext,jlScoreT,jlScore,jlTimeT,jlTime;
+	
+
+	GameUI(UIChanger uic) {
+		super(uic);
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

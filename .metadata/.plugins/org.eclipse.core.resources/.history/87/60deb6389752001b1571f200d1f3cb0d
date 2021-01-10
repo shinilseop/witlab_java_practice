@@ -1,0 +1,31 @@
+package Tetris;
+
+import Main.*;
+
+public class Tetris extends Thread {
+	public int tetris[][];
+	int score;
+	int time;
+	Block next;
+	boolean isRun;
+	
+	public Tetris(){
+		tetris=new int[21][10];
+		score=0;
+		next=new Block();
+	}
+	
+	public void isGameOver() {
+		for(int i=0;i<tetris[0].length;i++) {
+			if(tetris[0][i]>=0) {
+				Main.isRun=false;
+			}
+		}
+	}
+	
+	public void run() {
+		while(Main.isRun) {
+			
+		}
+	}
+}

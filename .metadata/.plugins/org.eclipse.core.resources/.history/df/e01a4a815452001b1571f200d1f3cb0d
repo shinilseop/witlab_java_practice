@@ -1,0 +1,57 @@
+package UI;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class RegisterUI extends UI implements ActionListener {
+	Font font; 
+	
+	JPanel jpContent;
+	String strContent[] = { "ID : ", 
+			"PassWord : ", 
+			"Name : ", 
+			"Email : "};
+	JLabel jlContent[];
+	JTextField jtfContent[];
+	JButton jbRegist;
+
+	RegisterUI(UIChanger uic) {
+		super(uic);
+		
+		font=new Font("굴림", Font.BOLD, 15);
+
+		//Init_Center
+		jpContent=new JPanel(new GridLayout(strContent.length, 2))	;
+		jlContent = new JLabel[strContent.length];
+		jtfContent = new JTextField[strContent.length];
+		for (int i = 0; i < jlContent.length; i++) {
+			jlContent[i] = new JLabel(strContent[i]);
+			jlContent[i].setHorizontalAlignment(JLabel.CENTER);
+			jlContent[i].setFont(font);
+		}
+		for (int i = 0; i < jlContent.length; i++) {
+			jtfContent[i] = new JTextField();
+		}
+		//Inut_Bottom
+		jbRegist=new JButton("Regist");
+		
+		Container ct=getContentPane();
+		ct.setLayout(new BorderLayout());
+		ct.add(jpContent, BorderLayout.CENTER);
+		ct.add(jbRegist, BorderLayout.Bottom);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == jbRegist) {
+
+		}
+	}
+}

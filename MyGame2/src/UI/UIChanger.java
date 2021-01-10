@@ -1,8 +1,10 @@
 package UI;
 
 public interface UIChanger {
-	public void changeSelect();
-	public void changeHow();
-	public void changeGame();
-	public void changeScore();
+	public void goMenu();
+	public void goHow();
+	public void goGame();
+	public void goScore();
+	public void goRegister();
+	public void goLogin();
 }

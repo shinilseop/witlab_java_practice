@@ -1,0 +1,17 @@
+package UI;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class ScoreUI extends UI {
+
+	
+	JPanel jpMiddle, jpRank, jpName, jpScore;
+	JLabel jlRank[], jlName[], jlScore[];
+
+	ScoreUI(UIChanger uic) {
+		super(uic);
+		// TODO Auto-generated constructor stub
+	}
+
+}

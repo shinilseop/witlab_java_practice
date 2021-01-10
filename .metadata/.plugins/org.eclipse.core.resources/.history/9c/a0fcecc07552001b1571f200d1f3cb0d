@@ -1,0 +1,12 @@
+package UI;
+
+public class GameUI extends UI {
+	
+	JPanel jpTetris, jpOther;
+
+	GameUI(UIChanger uic) {
+		super(uic);
+		// TODO Auto-generated constructor stub
+	}
+	
+}

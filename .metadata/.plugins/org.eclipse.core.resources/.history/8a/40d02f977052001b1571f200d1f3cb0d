@@ -1,0 +1,6 @@
+package DBMS;
+
+public class Score {
+	String id, time;
+	int score;
+}

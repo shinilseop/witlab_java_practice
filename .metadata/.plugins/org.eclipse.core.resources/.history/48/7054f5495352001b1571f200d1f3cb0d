@@ -1,0 +1,17 @@
+package UI;
+
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+
+public class LoginUI extends UI implements ActionListener {
+	
+	String strContent= {};
+	JLabel jlContent;
+	
+	LoginUI(UIChanger uic) {
+		super(uic);
+		// TODO Auto-generated constructor stub
+	}
+
+}

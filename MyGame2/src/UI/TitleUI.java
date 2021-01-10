@@ -10,14 +10,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class TitleUI extends UI implements Runnable, KeyListener {
+public class TitleUI extends UI implements Runnable {
 	Font font;
 
 	ImageIcon iiBack;
 	JLabel jlPress, jlBack;
-	UIChanger uic;
 	
-	public TitleUI() {
+	boolean isStart;
+	
+	public TitleUI(UIChanger uic) {
+		super(uic);
 		font = new Font("굴림", Font.BOLD, 15);
 		iiBack = new ImageIcon("image/TetrisTitle.png");
 
@@ -37,6 +39,8 @@ public class TitleUI extends UI implements Runnable, KeyListener {
 		setFocusable(true);
 		setTitle("Title");
 		setSize(527, 426);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
@@ -44,17 +48,13 @@ public class TitleUI extends UI implements Runnable, KeyListener {
 
 		new Thread(this).start();
 	}
-	
-	public void setCallBack(UIChanger uic) {
-		this.uic=uic;
-	}
 
 	public void run() {
 		boolean pressVisible = true;
 		int timer = 0;
 		while (true) {
 			if (isStart) {
-				if (timer == 750) {
+				if (timer == 500) {
 					jlPress.setVisible(!pressVisible);
 					pressVisible = !pressVisible;
 					timer=0;
@@ -68,7 +68,6 @@ public class TitleUI extends UI implements Runnable, KeyListener {
 					e.printStackTrace();
 				}
 			} else {
-				System.out.println("out");
 				break;
 			}
 		}
@@ -78,19 +77,7 @@ public class TitleUI extends UI implements Runnable, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		isStart = false;
-		setVisible(false);
-		uic.changeSelect();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		removeKey();
+		uic.goLogin();
 	}
 }
