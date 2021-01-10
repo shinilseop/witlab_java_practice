@@ -1,0 +1,12 @@
+package Main;
+
+import Tetris.*;
+import UI.*;
+
+public class Main {
+	public static boolean isRun=false;
+	public static void main(String args[]) {
+		UIManager uim=new UIManager();
+		uim.start();
+	}
+}

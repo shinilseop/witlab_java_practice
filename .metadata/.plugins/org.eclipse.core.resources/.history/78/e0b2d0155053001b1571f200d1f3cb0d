@@ -1,0 +1,19 @@
+package TimerTest;
+
+import javax.swing.JLabel;
+
+public class TimerThread extends Thread {
+	JLabel label;
+	int num;
+	
+	public TimerThread(JLabel label, int num) {
+		this.label=label;
+		this.num=num;
+	}
+	
+	public void run() {
+		while(true) {
+			sleep(1000);
+		}
+	}
+}

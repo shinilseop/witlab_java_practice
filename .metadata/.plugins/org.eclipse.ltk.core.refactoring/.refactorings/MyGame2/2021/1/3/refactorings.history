@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;MyGame2/image/oragne_block.png&apos; to &apos;orange_block.png&apos;" description="Rename resource &apos;oragne_block.png&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="image/oragne_block.png" name="orange_block.png" stamp="1610276533731" updateReferences="true"/>
+</session>

@@ -1,0 +1,7 @@
+package TimerTest;
+
+public class TimerThread extends Thread {
+	JLabel label;
+	int num;
+	
+}

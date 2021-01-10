@@ -1,0 +1,95 @@
+package UI;
+
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import Main.Main;
+import Tetris.Tetris;
+
+public class UpdateBoard extends Thread {
+	JPanel board;
+	JLabel jlBlock[][];
+	JLabel jlNext;
+	JLabel jlScore;
+	JLabel jlTimer;
+	
+	public int time;
+	ImageIcon iiBlock[];
+	ImageIcon iiBlockFull[];
+	Tetris t;
+
+	UpdateBoard(JPanel board, JLabel jlBlock[][], JLabel jlNext, JLabel jlScore, JLabel jlTimer, Tetris t) {
+		this.board = board;
+		this.jlBlock = jlBlock;
+		this.jlNext = jlNext;
+		this.jlScore = jlScore;
+		this.jlTimer = jlTimer;
+		this.t = t;
+		time=0;
+		iiBlock = new ImageIcon[9];
+		iiBlockFull=new ImageIcon[9];
+		iiBlock[0] = new ImageIcon("image/black_block.png");
+		iiBlock[1] = new ImageIcon("image/blue_block.png");
+		iiBlock[2] = new ImageIcon("image/green_block.png");
+		iiBlock[3] = new ImageIcon("image/orange_block.png");
+		iiBlock[4] = new ImageIcon("image/purple_block.png");
+		iiBlock[5] = new ImageIcon("image/red_block.png");
+		iiBlock[6] = new ImageIcon("image/sky_block.png");
+		iiBlock[7] = new ImageIcon("image/yellow_block.png");
+		iiBlock[8] = new ImageIcon("image/grey_block.png");
+		iiBlockFull[0] = new ImageIcon("image/black_block.png");
+		iiBlockFull[1] = new ImageIcon("image/blue_block_full.png");
+		iiBlockFull[2] = new ImageIcon("image/green_block_full.png");
+		iiBlockFull[3] = new ImageIcon("image/orange_block_full.png");
+		iiBlockFull[4] = new ImageIcon("image/purple_block_full.png");
+		iiBlockFull[5] = new ImageIcon("image/red_block_full.png");
+		iiBlockFull[6] = new ImageIcon("image/sky_block_full.png");
+		iiBlockFull[7] = new ImageIcon("image/yellow_block_full.png");
+		iiBlockFull[8] = new ImageIcon("image/grey_block.png");
+		Main.isRun=true;
+	}
+	
+	public ImageIcon scaledImage(String File) {
+		Image iTmp=new ImageIcon(File).getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+		return new ImageIcon(iTmp);
+	}
+
+	public void run() {
+		int timeTmp=0;
+		while (Main.isRun) {
+			for (int i = 1; i < t.sum.length; i++) {
+				for (int j = 0; j < t.sum[0].length; j++) {
+					jlBlock[i - 1][j].setIcon(iiBlock[t.sum[i][j]]);
+				}
+			}
+			jlNext.setIcon(iiBlockFull[t.next]);
+			jlScore.setText("Score : "+t.score);
+			if(timeTmp==1000) {
+				timeTmp=0;
+				time++;
+			}
+			timeTmp++;
+			jlTimer.setText("time : "+time);
+			board.revalidate();
+			board.repaint();
+			try {
+				sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		// 게임오버이후 정렬(현재 블록이 위에 남아있을수도 있어서)
+		for (int i = 1; i < t.tetris.length; i++) {
+			for (int j = 0; j < t.tetris[0].length; j++) {
+				jlBlock[i - 1][j].setIcon(iiBlock[t.tetris[i][j]]);
+			}
+		}
+		board.revalidate();
+		board.repaint();
+	}
+}

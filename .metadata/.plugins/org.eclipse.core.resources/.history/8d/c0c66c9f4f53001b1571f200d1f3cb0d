@@ -1,0 +1,7 @@
+package TimerTest;
+
+import javax.swing.JFrame;
+
+public class Timer extends JFrame implements Runnable {
+
+}

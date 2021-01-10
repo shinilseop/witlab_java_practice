@@ -1,0 +1,24 @@
+package TimerTest;
+
+import java.awt.Container;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+
+public class Timer extends JFrame {
+	Font font;
+	
+	JLabel timer1, timer2;
+	
+	public Timer() {
+		font=new Font("굴림", Font.BOLD, 15);
+		
+		timer1=new JLabel("타임 : ");
+		
+		Container ct=getContentPane();
+		ct.setLayout(new GridLayout(1,2));
+		ct.add(timer1);
+		ct.add(timer2);
+		
+	}
+}

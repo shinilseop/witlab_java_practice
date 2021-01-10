@@ -26,12 +26,12 @@ public class GameUI extends UI {
 	JLabel jlNextT, jlNext, jlScore, jlTimer;
 
 	Tetris t;
-	UpdateBoard up;
+	UpdateBoard ub;
 
 	GameUI(UIChanger uic) {
 		super(uic);
 
-		font = new Font("굴림", Font.BOLD, 20);
+		font = new Font("굴림", Font.BOLD, 25);
 
 		// init_left
 		jpTetris = new JPanel(new GridLayout(20, 10));
@@ -53,30 +53,32 @@ public class GameUI extends UI {
 		jlNextT.setBounds(50, 20, 200, 30);
 		jlNext = new JLabel(iiNext);
 		jlNext.setBorder(new LineBorder(Color.white, 4));
-		jlNext.setBounds(60, 60, 180, 150);
+		jlNext.setBounds(60, 80, 180, 150);
 		jlScore = new JLabel("SCORE : 0");
 		jlScore.setHorizontalAlignment(JLabel.CENTER);
 		jlScore.setFont(font);
 		jlScore.setForeground(Color.white);
-		jlScore.setBounds(50, 280, 200, 30);
+		jlScore.setBounds(50, 350, 200, 30);
 		jlTimer = new JLabel("TIME : 0 s");
 		jlTimer.setHorizontalAlignment(JLabel.CENTER);
 		jlTimer.setFont(font);
 		jlTimer.setForeground(Color.white);
-		jlTimer.setBounds(50, 400, 200, 30);
+		jlTimer.setBounds(50, 500, 200, 30);
 
 		t = new Tetris();
-		up = new UpdateBoard(jpTetris, jlBlock, jlScore, jlTimer, t);
+		ub = new UpdateBoard(jpTetris, jlBlock, jlNext, jlScore, jlTimer, t);
 		
 		Container ct = getContentPane();
 		ct.setLayout(null);
-		jpTetris.setBounds(0, 0, 400, 580);
+		jpTetris.setBounds(0, 0, 400, 800);
 		ct.add(jpTetris);
-		jpOther.setBounds(400, 0, 282, 580);
+		jpOther.setBounds(400, 0, 282, 800);
 		ct.add(jpOther);
 
+		addKeyListener(this);
+		setFocusable(true);
 		setTitle("테트리스");
-		setSize(700, 600);
+		setSize(700, 840);
 		//setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,6 +96,10 @@ public class GameUI extends UI {
 		jpOther.add(jlNext);
 		jpOther.add(jlScore);
 		jpOther.add(jlTimer);
+		
+		ub.start();
+		t.start();
+		t.timer.start();
 	}
 	
 	public ImageIcon scaledImage(String File) {
@@ -106,15 +112,15 @@ public class GameUI extends UI {
 		// TODO Auto-generated method stub
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_UP) {
-
+			t.rotate();
 		} else if (key == KeyEvent.VK_LEFT) {
-
+			t.left();
 		} else if (key == KeyEvent.VK_RIGHT) {
-
+			t.right();
 		} else if (key == KeyEvent.VK_DOWN) {
-
+			t.down();
 		} else if (key == KeyEvent.VK_SPACE) {
-			
+			t.down_last();
 		}
 	}
 }

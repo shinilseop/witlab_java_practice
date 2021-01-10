@@ -1,0 +1,15 @@
+package TimerTest;
+
+import javax.swing.JFrame;
+
+public class Timer extends JFrame implements Runnable {
+	JLabel timer1, timer2;
+	
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
