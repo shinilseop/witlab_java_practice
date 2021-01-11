@@ -11,7 +11,7 @@ public class Block extends Thread {
 	boolean isLand;
 
 	Block(BlockIndexArray bia, int step, int[][] tetris, int block_num) {
-		this.bia=bia;
+		this.bia = bia;
 		this.step = step;
 		System.out.println("new Block " + block_num);
 		this.tetris = tetris;
@@ -23,7 +23,7 @@ public class Block extends Thread {
 	}
 
 	public void setIndex() {
-		for (int i = 0; i < bia.block_index[0].length; i++) {
+		for (int i = 0; i < bia.block_index[1].length; i++) {
 			bi[i] = new BlockIndex(bia.block_index[block_num][i][0], bia.block_index[block_num][i][1]);
 		}
 	}
@@ -46,6 +46,11 @@ public class Block extends Thread {
 
 	public void run() {
 		isLand();
+		if (isLand) {
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].y += 1;
+			}
+		}
 		while (!isLand) {
 			for (int i = 0; i < bi.length; i++) {
 				bi[i].y += 1;
@@ -90,28 +95,40 @@ public class Block extends Thread {
 
 	public void rotate() {
 		if (!isLand && block_num != 7) {
-			System.out.println("rotate");
-			int stdNum=2;
-			if(block_num==6 && rotate%2==0) {
-				stdNum=1;
-			}
-			for(int i=0;i<bia.check_arr[block_num][rotate].length;i++) {
-				for(int j=0;j<bi.length;j++) {
-					int yTmp=bi[stdNum].y+bia.check_arr[block_num][rotate][i][1];
-					int xTmp=bi[stdNum].x+bia.check_arr[block_num][rotate][i][0];
-					System.out.println(xTmp+" "+yTmp);
-					if(0>xTmp || xTmp>9 || yTmp<0 || yTmp>21 || tetris[yTmp][xTmp]>0) {
+			if(block_num==6) {//막대블록인경우
+				int stdNum=rotate/2+1;
+				for(int i=0;i<bia.sky_check[rotate].length;i++) {
+					int xTmp = bi[stdNum].x + bia.sky_check[rotate][i][0];
+					int yTmp = bi[stdNum].y + bia.sky_check[rotate][i][1];
+					if(0 > xTmp || xTmp > 9 || yTmp < 0 || yTmp > 21 || tetris[yTmp][xTmp] > 0) {
 						return;
 					}
 				}
-			}
-			for(int i=0;i<bi.length;i++) {
-				bi[i].x+=bia.rotate_arr[block_num][rotate][i][0];
-				bi[i].y+=bia.rotate_arr[block_num][rotate][i][1];
+				//이동
+				for(int i=0;i<bi.length;i++) {
+					bi[i].x+=bia.sky_rotate[rotate][i][0];
+					bi[i].y+=bia.sky_rotate[rotate][i][1];
+				}
+			} else {
+				for(int i=0;i<bia.color_check[block_num][rotate].length;i++) {
+					for(int j=0;j<bi.length;j++	) {
+						int xTmp = bi[2].x + bia.check[bia.color_check[block_num][rotate][i]][0];
+						int yTmp = bi[2].y + bia.check[bia.color_check[block_num][rotate][i]][1];
+						if(0 > xTmp || xTmp > 9 || yTmp < 0 || yTmp > 21 || tetris[yTmp][xTmp] > 0) {
+							return;
+						}
+					}
+				}
+				//이동
+				for(int i=0;i<bi.length;i++) {
+					bi[i].x+=bia.rotate[bi[i].idx][0];
+					bi[i].y+=bia.rotate[bi[i].idx][1];
+					bi[i].idx=bia.after_rotate[bi[i].idx];
+				}
 			}
 			rotate++;
-			if(rotate==4)
-				rotate=0;
+			if (rotate == 4)
+				rotate = 0;
 		}
 	}
 
