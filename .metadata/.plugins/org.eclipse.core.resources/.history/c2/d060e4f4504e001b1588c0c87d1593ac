@@ -1,7 +1,0 @@
-package JAVA_02_first;
-
-public class Main {
-	public static void main(String args[]) {
-		
-	}
-}

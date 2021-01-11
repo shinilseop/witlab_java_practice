@@ -25,7 +25,7 @@ public class DBMS {
 			stmt = conn.createStatement();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("DB Connection Error");
 		}
 	}
 
@@ -43,7 +43,7 @@ public class DBMS {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Score Load Error");
 		}
 		System.out.println("Load Score List");
 		return scoreList;
@@ -60,7 +60,7 @@ public class DBMS {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Login Error");
 		}
 		return false;
 	}
@@ -72,8 +72,21 @@ public class DBMS {
 			update = stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Regist Error!");
 		}
+		return update;
+	}
+	
+	public int record(String sql) {
+		System.out.println("Record Try...");
+		int update = 0;
+		try {
+			update = stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Record Score Error");
+		}
+		System.out.println("Record Complete");
 		return update;
 	}
 }

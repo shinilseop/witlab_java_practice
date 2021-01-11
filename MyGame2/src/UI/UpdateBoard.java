@@ -7,10 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import DBMS.DBMS;
 import Main.Main;
 import Tetris.Tetris;
 
 public class UpdateBoard extends Thread {
+	String id;
 	JPanel board;
 	JLabel jlBlock[][];
 	JLabel jlNext;
@@ -21,7 +23,8 @@ public class UpdateBoard extends Thread {
 	ImageIcon iiBlockFull[];
 	Tetris t;
 
-	UpdateBoard(JPanel board, JLabel jlBlock[][], JLabel jlNext, JLabel jlScore, JLabel jlTimer, Tetris t) {
+	UpdateBoard(String id, JPanel board, JLabel jlBlock[][], JLabel jlNext, JLabel jlScore, JLabel jlTimer, Tetris t) {
+		this.id=id;
 		this.board = board;
 		this.jlBlock = jlBlock;
 		this.jlNext = jlNext;
@@ -57,16 +60,20 @@ public class UpdateBoard extends Thread {
 	}
 
 	public ImageIcon scaledImage2(String File) {
-		Image iTmp=new ImageIcon(File).getImage().getScaledInstance(150, 100, Image.SCALE_SMOOTH);
+		Image iTmp=new ImageIcon(File).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		return new ImageIcon(iTmp);
 	}
 	
 	public void run() {
 		while (Main.isRun) {
-			for (int i = 2; i < t.sum.length; i++) {
-				for (int j = 0; j < t.sum[0].length; j++) {
-					jlBlock[i-2][j].setIcon(iiBlock[t.sum[i][j]]);
+			for (int i = 2; i < t.tetris.length; i++) {
+				for (int j = 0; j < t.tetris[0].length; j++) {
+					jlBlock[i-2][j].setIcon(iiBlock[t.tetris[i][j]]);
 				}
+			}
+			for(int i=0;i<t.now.bi.length;i++) {
+				if(t.now.bi[i].y>=2)
+					jlBlock[t.now.bi[i].y-2][t.now.bi[i].x].setIcon(iiBlock[t.now.block_num]);
 			}
 			jlNext.setIcon(iiBlockFull[t.next]);
 			jlScore.setText("Score : "+t.score);
@@ -82,17 +89,21 @@ public class UpdateBoard extends Thread {
 			}
 		}
 		
-		// 게임오버이후 정렬(현재 블록이 위에 남아있을수도 있어서)
+		// 게임오버이후 정렬(회색)
 		for (int i = 2; i < t.tetris.length; i++) {
 			for (int j = 0; j < t.tetris[0].length; j++) {
-				jlBlock[i - 2][j].setIcon(iiBlock[t.tetris[i][j]]);
+				if(t.tetris[i][j]>0)
+					jlBlock[i - 2][j].setIcon(scaledImage("image/grey_block.png"));
+				else
+					jlBlock[i-2][j].setIcon(iiBlock[t.tetris[i][j]]);
 			}
 		}
 		jlTimer.setText("time : "+t.timer.time);
 		jlScore.setText("Score : "+t.score);
 		board.revalidate();
 		board.repaint();
-
+		
+		new DBMS().record("insert into score values ('"+id+"', "+t.score+", now())");
 		JOptionPane jopRegist=new JOptionPane();
 		JOptionPane.showMessageDialog(null, "Score : "+t.score, "게임 오버!", JOptionPane.INFORMATION_MESSAGE);
 	}

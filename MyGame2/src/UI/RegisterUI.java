@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import DBMS.DBMS;
@@ -22,6 +23,7 @@ public class RegisterUI extends UI implements ActionListener {
 	String strContent[] = { "ID : ", "PassWord : ", "Name : ", "Email : " };
 	JLabel jlContent[], jlResult;
 	JTextField jtfContent[];
+	JPasswordField jpfPw;
 	JButton jbRegist;
 
 	RegisterUI(UIChanger uic) {
@@ -33,15 +35,18 @@ public class RegisterUI extends UI implements ActionListener {
 		jpContent = new JPanel(new GridLayout(strContent.length, 2));
 		jpContent.setBounds(20, 20, 200, 100);
 		jlContent = new JLabel[strContent.length];
-		jtfContent = new JTextField[strContent.length];
 		for (int i = 0; i < jlContent.length; i++) {
 			jlContent[i] = new JLabel(strContent[i]);
 			jlContent[i].setHorizontalAlignment(JLabel.RIGHT);
 			jlContent[i].setFont(font);
 		}
+		
+		jtfContent = new JTextField[strContent.length];
 		for (int i = 0; i < jlContent.length; i++) {
 			jtfContent[i] = new JTextField();
 		}
+		jpfPw=new JPasswordField();
+		
 		// Inut_Bottom
 		jbRegist = new JButton("회원가입");
 		jbRegist.setBounds(80, 125, 100, 30);
@@ -62,7 +67,11 @@ public class RegisterUI extends UI implements ActionListener {
 
 		for (int i = 0; i < jlContent.length; i++) {
 			jpContent.add(jlContent[i]);
-			jpContent.add(jtfContent[i]);
+			if(i==1) {
+				jpContent.add(jpfPw);
+			} else {
+				jpContent.add(jtfContent[i]);
+			}
 		}
 	}
 	
@@ -81,7 +90,11 @@ public class RegisterUI extends UI implements ActionListener {
 			DBMS dbms = new DBMS();
 			StringBuffer sql = new StringBuffer("insert into user values ('" + jtfContent[0].getText() + "'");
 			for (int i = 1; i < jtfContent.length; i++) {
-				sql.append(",'" + jtfContent[i].getText() + "'");
+				if(i==1) {
+					sql.append(",'" + jpfPw.getText() + "'");
+				} else {
+					sql.append(",'" + jtfContent[i].getText() + "'");
+				}
 			}
 			sql.append(")");
 			System.out.println(sql);

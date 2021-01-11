@@ -1,7 +1,0 @@
-package JAVA_02_first;
-
-import javax.swing.Action;
-
-public class ActionClass implements ActionListener {
-
-}

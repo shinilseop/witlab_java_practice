@@ -13,7 +13,7 @@ public class Timer extends Thread {
 			try {
 				sleep(1000);
 			} catch (Exception e) {
-
+				System.out.println("Timer Error");
 			}
 		}
 	}

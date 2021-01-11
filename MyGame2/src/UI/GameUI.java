@@ -66,7 +66,7 @@ public class GameUI extends UI {
 		jlTimer.setBounds(50, 500, 200, 30);
 
 		t = new Tetris();
-		ub = new UpdateBoard(jpTetris, jlBlock, jlNext, jlScore, jlTimer, t);
+		ub = new UpdateBoard(uic.getId(), jpTetris, jlBlock, jlNext, jlScore, jlTimer, t);
 		
 		Container ct = getContentPane();
 		ct.setLayout(null);
@@ -112,15 +112,15 @@ public class GameUI extends UI {
 		// TODO Auto-generated method stub
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_UP) {
-			t.rotate();
+			t.now.rotate();
 		} else if (key == KeyEvent.VK_LEFT) {
-			t.left();
+			t.now.left();
 		} else if (key == KeyEvent.VK_RIGHT) {
-			t.right();
+			t.now.right();
 		} else if (key == KeyEvent.VK_DOWN) {
-			t.down();
+			t.now.down();
 		} else if (key == KeyEvent.VK_SPACE) {
-			t.down_last();
+			t.now.down_space();
 		}
 	}
 }

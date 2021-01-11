@@ -2,8 +2,8 @@ package UI;
 
 public class UIManager {
 	UI ui;
+	String id;
 	UIChanger uic;
-
 
 	public UIManager() {
 		uic = new UIChanger() {
@@ -30,11 +30,16 @@ public class UIManager {
 			public void goLogin() {
 				ui = new LoginUI(uic);
 			}
+			public String getId() {
+				return id;
+			}
+			public void setId(String idTmp) {
+				id=idTmp;
+			}
 		};
 	}
 
 	public void start() {
 		ui = new TitleUI(uic);
 	}
-
 }

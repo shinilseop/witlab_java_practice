@@ -6,7 +6,6 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 public class UI extends JFrame implements KeyListener {
-	UI ui;
 	UIChanger uic;
 
 	UI(UIChanger uic) {

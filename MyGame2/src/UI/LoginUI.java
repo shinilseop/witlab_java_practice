@@ -93,6 +93,7 @@ public class LoginUI extends UI implements ActionListener {
 				DBMS dbms = new DBMS();
 				if (dbms.login(id, passwd)) {
 					setVisible(false);
+					uic.setId(jtfId.getText());
 					uic.goMenu();
 				} else {
 					warning("아이디 혹은 비밀번호가 올바르지 않습니다.");

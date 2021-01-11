@@ -1,7 +1,0 @@
-package JAVA_02_last;
-
-public class Character {
-	int x;
-	boolean left;
-	
-}

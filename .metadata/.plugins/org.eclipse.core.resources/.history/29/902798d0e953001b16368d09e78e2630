@@ -1,0 +1,151 @@
+package Tetris;
+
+public class Block extends Thread {
+	int step;
+	int[][] tetris;
+	public BlockIndex bi[];
+	BlockIndex guide[];
+	public int block_num;
+	public BlockIndexArray bia;
+	int rotate;
+	boolean isLand;
+
+	Block(BlockIndexArray bia, int step, int[][] tetris, int block_num) {
+		this.bia=bia;
+		this.step = step;
+		System.out.println("new Block " + block_num);
+		this.tetris = tetris;
+		isLand = false;
+		rotate = 0;
+		this.block_num = block_num;
+		bi = new BlockIndex[4];
+		setIndex();
+	}
+
+	public void setIndex() {
+		for (int i = 0; i < bia.block_index[0].length; i++) {
+			bi[i] = new BlockIndex(bia.block_index[block_num][i][0], bia.block_index[block_num][i][1]);
+		}
+	}
+
+	public void isLand() {
+		for (int i = 0; i < bi.length; i++) {
+			if (bi[i].y == 21 || tetris[bi[i].y + 1][bi[i].x] > 0) {
+				tetrisMaker();
+				isLand = true;
+				return;
+			}
+		}
+	}
+
+	public void tetrisMaker() {
+		for (int j = 0; j < bi.length; j++) {
+			tetris[bi[j].y][bi[j].x] = block_num;
+		}
+	}
+
+	public void run() {
+		isLand();
+		while (!isLand) {
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].y += 1;
+			}
+			try {
+				sleep(step);
+			} catch (InterruptedException e) {
+				System.out.println("Block Down Thread Error");
+			}
+			if (!isLand)
+				isLand();
+		}
+	}
+
+	public void left() {
+		if (!isLand) {
+			System.out.println("left");
+			for (int i = 0; i < bi.length; i++) {
+				if (bi[i].x == 0 || tetris[bi[i].y][bi[i].x - 1] > 0) {
+					return;
+				}
+			}
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].x -= 1;
+			}
+		}
+	}
+
+	public void right() {
+		if (!isLand) {
+			System.out.println("right");
+			for (int i = 0; i < bi.length; i++) {
+				if (bi[i].x == 9 || tetris[bi[i].y][bi[i].x + 1] > 0) {
+					return;
+				}
+			}
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].x += 1;
+			}
+		}
+	}
+
+	public void rotate() {
+		if (!isLand && block_num != 7) {
+			System.out.println("rotate");
+			int stdNum=2;
+			if(block_num==6) {
+				stdNum=1;
+			}
+			for(int i=0;i<bia.check_arr[block_num][rotate].length;i++) {
+				for(int j=0;j<bi.length;j++) {
+					int yTmp=bi[2].y+bia.check_arr[block_num][rotate][i][1];
+					int xTmp=bi[2].x+bia.check_arr[block_num][rotate][i][0];
+					System.out.println(xTmp+" "+yTmp);
+					if(0>xTmp || xTmp>9 || yTmp<0 || yTmp>21 || tetris[yTmp][xTmp]>0) {
+						return;
+					}
+				}
+			}
+			for(int i=0;i<bi.length;i++) {
+				bi[i].x+=bia.rotate_arr[block_num][rotate][i][0];
+				bi[i].y+=bia.rotate_arr[block_num][rotate][i][1];
+			}
+			rotate++;
+			if(rotate==4)
+				rotate=0;
+		}
+	}
+
+	public void down() {
+		if (!isLand) {
+			System.out.println("down");
+			for (int i = 0; i < bi.length; i++) {
+				if (bi[i].y == 21 || tetris[bi[i].y + 1][bi[i].x] > 0) {
+					return;
+				}
+			}
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].y += 1;
+			}
+		}
+	}
+
+	public void down_space() {
+		if (!isLand) {
+			boolean keep = true;
+			System.out.println("space");
+			while (keep) {
+				for (int i = 0; i < bi.length; i++) {
+					if (bi[i].y == 21 || tetris[bi[i].y + 1][bi[i].x] > 0) {
+						keep = false;
+					}
+				}
+				if (keep) {
+					for (int i = 0; i < bi.length; i++) {
+						bi[i].y += 1;
+					}
+				}
+			}
+			isLand();
+		}
+	}
+}

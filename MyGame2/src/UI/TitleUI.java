@@ -38,7 +38,7 @@ public class TitleUI extends UI implements Runnable {
 		addKeyListener(this);
 		setFocusable(true);
 		setTitle("Title");
-		setSize(527, 426);
+		setSize(518, 417);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

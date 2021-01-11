@@ -7,4 +7,7 @@ public interface UIChanger {
 	public void goScore();
 	public void goRegister();
 	public void goLogin();
+	public String getId();
+	public void setId(String idTmp);
+	
 }

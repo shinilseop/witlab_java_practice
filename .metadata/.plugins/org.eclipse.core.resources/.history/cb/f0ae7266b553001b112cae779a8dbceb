@@ -1,0 +1,167 @@
+package Tetris;
+
+public class Block extends Thread {
+	int step;
+	int[][] tetris;
+	BlockIndex bi[];
+	BlockIndex guide[];
+	int block_num;
+	int rotate;
+	boolean isLand;
+
+	int block_index[][][] = { { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } }, { { 4, 0 }, { 4, 1 }, { 5, 1 }, { 6, 1 } },
+			{ { 6, 0 }, { 5, 0 }, { 5, 1 }, { 4, 1 } }, { { 4, 1 }, { 5, 1 }, { 6, 1 }, { 6, 0 } },
+			{ { 4, 1 }, { 5, 0 }, { 5, 1 }, { 6, 1 } }, { { 4, 0 }, { 5, 0 }, { 5, 1 }, { 6, 1 } },
+			{ { 3, 0 }, { 4, 0 }, { 5, 0 }, { 6, 0 } }, { { 4, 0 }, { 5, 0 }, { 4, 1 }, { 5, 1 } } };
+
+	// rotate_Array int [회전상태][몇번째블록을][x,y 이만큼씩]
+	public int rotate_blue[][][] = { { { 2, 0 }, { 1, -1 }, { 0, 0 }, { -1, 1 } },
+			{ { 0, 2 }, { 1, 1 }, { 0, 0 }, { -1, -1 } }, { { -2, 0 }, { -1, 1 }, { 0, 0 }, { 1, -1 } },
+			{ { 0, -2 }, { -1, -1 }, { 0, 0, }, { 1, 1 } } };// 니은
+	public int rotate_green[][][] = { { { 0, 2 }, { 1, 1 }, { 0, 0 }, { 1, -1 } },
+			{ { -2, 0 }, { -1, 1 }, { 0, 0 }, { 1, 1 } }, { { 0, -2 }, { -1, -1 }, { 0, 0 }, { -1, 1 } },
+			{ { 2, 0 }, { 1, -1 }, { 0, 0 }, { -1, -1 } } };// 오른쪽보는 리을
+	public int rotate_orange[][][] = {};// 니은 반대
+	public int rotate_purple[][][];// 빠큐
+	public int rotate_red[][][];// 왼쪽보는 리을
+	public int rotate_sky[][][];// 스페이스바
+	public int rotate_yellow[][][];// 네모블록 사실상 없음 0
+
+	// rotate_가능여부 판단 int [다음회전상태][검사 되어질 칸의 수][x,y]
+	public int blue_check[][][] = { { { 1, -1 }, { 0, -1 }, { 1, 1 }, { 0, 1 } },
+			{ { 1, 1 }, { 1, 0 }, { -1, 1 }, { -1, 0 } }, { { -1, 1 }, { 0, 1 }, { -1, -1 }, { 0, -1 } },
+			{ { -1, -1 }, { -1, 0 }, { 1, -1 }, { 1, 0 } } };// b[3].x b[3].y 기준
+	public int green_check[][][];
+
+	Block(int step, int[][] tetris, int block_num) {
+		this.step = step;
+		System.out.println("new Block " + block_num);
+		this.tetris = tetris;
+		isLand = false;
+		rotate = 0;
+		this.block_num = block_num;
+		bi = new BlockIndex[4];
+		setIndex();
+	}
+
+	public void setIndex() {
+		for (int i = 0; i < block_index[0].length; i++) {
+			bi[i] = new BlockIndex(block_index[block_num][i][0], block_index[block_num][i][1]);
+		}
+	}
+
+	public void isLand() {
+		for (int i = 0; i < bi.length; i++) {
+			if (bi[i].y == 21 || tetris[bi[i].y + 1][bi[i].x] > 0) {
+				tetrisMaker();
+				isLand = true;
+				return;
+			}
+		}
+	}
+
+	public void tetrisMaker() {
+		for (int j = 0; j < bi.length; j++) {
+			tetris[bi[j].y][bi[j].x] = block_num;
+		}
+	}
+
+	public void left() {
+		if (!isLand) {
+			System.out.println("left");
+			for (int i = 0; i < bi.length; i++) {
+				if (bi[i].x == 0 || tetris[bi[i].y][bi[i].x - 1] > 0) {
+					return;
+				}
+			}
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].x -= 1;
+			}
+		}
+	}
+
+	public void right() {
+		if (!isLand) {
+			System.out.println("right");
+			for (int i = 0; i < bi.length; i++) {
+				if (bi[i].x == 9 || tetris[bi[i].y][bi[i].x + 1] > 0) {
+					return;
+				}
+			}
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].x += 1;
+			}
+		}
+	}
+
+	public void rotate() {
+		if (!isLand) {
+			System.out.println("rotate");
+			if (block_num == 1) {
+
+			} else if (block_num == 2) {
+
+			} else if (block_num == 3) {
+
+			} else if (block_num == 4) {
+
+			} else if (block_num == 5) {
+
+			} else if (block_num == 6) {
+
+			} else if (block_num == 7) {
+
+			}
+		}
+	}
+
+	public void down() {
+		if (!isLand) {
+			System.out.println("down");
+			for (int i = 0; i < bi.length; i++) {
+				if (bi[i].y == 21 || tetris[bi[i].y + 1][bi[i].x] > 0) {
+					return;
+				}
+			}
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].y += 1;
+			}
+		}
+	}
+
+	public void down_space() {
+		if (!isLand) {
+			boolean keep = true;
+			System.out.println("space");
+			while (keep) {
+				for (int i = 0; i < bi.length; i++) {
+					if (bi[i].y == 21 || tetris[bi[i].y + 1][bi[i].x] > 0) {
+						keep = false;
+					}
+				}
+				if (keep) {
+					for (int i = 0; i < bi.length; i++) {
+						bi[i].y += 1;
+					}
+				}
+			}
+			isLand();
+		}
+	}
+
+	public void run() {
+		isLand();
+		while (!isLand) {
+			for (int i = 0; i < bi.length; i++) {
+				bi[i].y += 1;
+			}
+			try {
+				sleep(step);
+			} catch (InterruptedException e) {
+				System.out.println("Block Down Thread Error");
+			}
+			if (!isLand)
+				isLand();
+		}
+	}
+}

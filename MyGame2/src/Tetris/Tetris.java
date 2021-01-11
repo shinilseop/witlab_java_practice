@@ -6,30 +6,20 @@ import Main.Main;
 
 public class Tetris extends Thread {
 	public int tetris[][];
-	public int sum[][];
 	public int score;
 	public int next;
 	public Block now;
 	public Timer timer;
-
-	public boolean makeBlock;
-
-	public int rotate_blue[][][] = { { {} } };
-	public int rotate_green[][][];
-	public int rotate_orange[][][];
-	public int rotate_purple[][][];
-	public int rotate_red[][][];
-	public int rotate_sky[][][];
-	public int rotate_yellow[][][];
-
-	boolean isRemove;
+	public BlockIndexArray bia;
+	int step;
 
 	public Tetris() {
+		bia=new BlockIndexArray();
+		step=500;
 		tetris = new int[22][10];
-		sum = new int[22][10];
 		score = 0;
 		timer=new Timer();
-		now = new Block(tetris, new Random().nextInt(7) + 1);
+		now = new Block(bia, step, tetris, new Random().nextInt(7) + 1);
 		next = new Random().nextInt(7) + 1;
 		System.out.println("now : " + now.block_num);
 		now.start();
@@ -73,107 +63,26 @@ public class Tetris extends Thread {
 		System.out.println(line + " Remove");
 	}
 
-	public void left() {
-		if (!now.isLand) {
-			System.out.println("left");
-			for (int i = 0; i < now.bi.length; i++) {
-				if (tetris[now.bi[i].y][now.bi[i].x - 1] > 0 || now.bi[i].x == 0) {
-					return;
-				}
-			}
-			for (int i = 0; i < now.bi.length; i++) {
-				now.bi[i].x -= 1;
-			}
-		}
-	}
-
-	public void right() {
-		if (!now.isLand) {
-			System.out.println("right");
-			for (int i = 0; i < now.bi.length; i++) {
-				if (tetris[now.bi[i].y][now.bi[i].x + 1] > 0 || now.bi[i].x == 9) {
-					return;
-				}
-			}
-			for (int i = 0; i < now.bi.length; i++) {
-				now.bi[i].x += 1;
-			}
-		}
-	}
-
-	public void rotate() {
-		if (!now.isLand) {
-			System.out.println("rotate");
-			if (now.block_num == 1) {
-
-			} else if (now.block_num == 2) {
-
-			} else if (now.block_num == 3) {
-
-			} else if (now.block_num == 4) {
-
-			} else if (now.block_num == 5) {
-
-			} else if (now.block_num == 6) {
-
-			} else if (now.block_num == 7) {
-
-			}
-		}
-	}
-
-	public void down() {
-		if (!now.isLand) {
-			System.out.println("down");
-			for (int i = 0; i < now.bi.length; i++) {
-				if (tetris[now.bi[i].y + 1][now.bi[i].x] > 0 || now.bi[i].y == 0) {
-					return;
-				}
-			}
-			for (int i = 0; i < now.bi.length; i++) {
-				now.bi[i].y += 1;
-			}
-		}
-	}
-
-	public void down_last() {
-		if (!now.isLand) {
-			System.out.println("space");
-			for (int i = 0; i < now.bi.length; i++) {
-				if (tetris[now.bi[i].y + 1][now.bi[i].x] > 0 || now.bi[i].y == 0) {
-					return;
-				}
-			}
-			for (int i = 0; i < now.bi.length; i++) {
-				now.bi[i].y += 1;
-			}
-		}
-	}
-
-	public void makeSum() {
-		for (int i = 0; i < tetris.length; i++) {
-			for (int j = 0; j < tetris[0].length; j++) {
-				sum[i][j] = tetris[i][j];
-			}
-		}
-		for (int i = 0; i < now.bi.length; i++) {
-			int x = now.bi[i].x;
-			int y = now.bi[i].y;
-			sum[y][x] = now.block_num;
-		}
-	}
-
 	public void run() {
 		while (Main.isRun) {
+			if(timer.time==30) {
+				step=400;
+			} else if(timer.time==60) {
+				step=300;
+			} else if(timer.time==90) {
+				step=200;
+			} else if(timer.time==120) {
+				step=100;
+			}
+			
 			if (now.isLand) {
 				score += (timer.time/10)*50;
-				now = new Block(tetris, next);
+				now = new Block(bia, step, tetris, next);
 				next = new Random().nextInt(7) + 1;
 				now.start();
 				isGameOver();
 				isLine();
 			}
-			makeSum();
 			try {
 				sleep(1);
 			} catch (InterruptedException e) {
